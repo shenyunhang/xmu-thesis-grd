@@ -759,4 +759,8 @@
 	\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 }
 
+%% 设置公式编号
+%\numberwithin{equation}{chapter}
+\counterwithin{equation}{chapter}
+
 \endinput
