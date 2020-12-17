@@ -189,6 +189,7 @@
 
 %% 复杂表格
 \RequirePackage{threeparttable}
+\RequirePackage{adjustbox}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
@@ -222,6 +223,7 @@
 
 %% graphics packages
 \RequirePackage{graphicx}
+\RequirePackage{epsfig}
 
 %% 并列子图
 \RequirePackage{subfigure}
@@ -265,6 +267,12 @@
 \renewcommand\theequation{\arabic{equation}}
 \renewcommand\thefigure{\arabic{figure}}
 \renewcommand\thetable{\arabic{table}}
+
+%% 表、图、公式编号里加入章节编号
+%\numberwithin{equation}{chapter}
+\counterwithin{equation}{chapter}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
 
 %% 颜色宏包
 \RequirePackage{xcolor}
@@ -758,9 +766,5 @@
 	\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
 	\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 }
-
-%% 设置公式编号
-%\numberwithin{equation}{chapter}
-\counterwithin{equation}{chapter}
 
 \endinput
