@@ -8,6 +8,8 @@
 
 %% math packages -- conflict with xunicode
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
+\RequirePackage{amssymb}
+\RequirePackage{dsfont,pifont}
 \RequirePackage{upgreek} % 直立希腊字母字体
 \RequirePackage[final]{pdfpages}
 
@@ -224,6 +226,7 @@
 %% graphics packages
 \RequirePackage{graphicx}
 \RequirePackage{epsfig}
+\RequirePackage{stackengine}
 
 %% 并列子图
 \RequirePackage{subfigure}
