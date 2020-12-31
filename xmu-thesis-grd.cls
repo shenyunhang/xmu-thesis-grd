@@ -191,7 +191,8 @@
 
 %% 复杂表格
 \RequirePackage{threeparttable}
-\RequirePackage{adjustbox}
+%\RequirePackage{adjustbox}
+\RequirePackage[export]{adjustbox}
 \RequirePackage{dcolumn}
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
@@ -229,7 +230,8 @@
 \RequirePackage{stackengine}
 
 %% 并列子图
-\RequirePackage{subfigure}
+%\RequirePackage{subfigure}
+\RequirePackage{subcaption}% replace subfigure with subcaption
 \RequirePackage{wrapfig}
 
 %% 设置图表标题选项
