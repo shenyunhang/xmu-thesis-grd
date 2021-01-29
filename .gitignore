@@ -1,4 +1,5 @@
 *.etoc
+.directory
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
