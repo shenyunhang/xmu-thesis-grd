@@ -299,9 +299,9 @@
 \renewcommand{\floatpagefraction}{0.60}
 
 %% 定公式、图、表编号格式
-\renewcommand\theequation{\arabic{equation}}
-\renewcommand\thefigure{\arabic{figure}}
-\renewcommand\thetable{\arabic{table}}
+\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
+\renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
+\renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 
 %% 定义公式命令
 \DeclareMathOperator*{\argmax}{arg\,max}
