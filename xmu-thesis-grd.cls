@@ -198,11 +198,41 @@
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
+%% 彩色表格
+\RequirePackage{colortbl}
+\RequirePackage{tikz}
+%\definecolor{myblue}{rgb}{0.4,0.6,0.9}
+\definecolor{myblue}{rgb}{0.6,0.8,1.0}
+\definecolor{myblue2}{rgb}{0.80,0.90,1.0}
+
+% This selects the amount of color to use
+\newcommand{\col}[3]{%
+    \newcommand*{\MinNumber}{#2}%
+    \newcommand*{\MaxNumber}{#3}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.2*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.2*(\MaxNumber-\MinNumber))}%
+    \pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.0*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.0*(\MaxNumber-\MinNumber))}%
+    %\pgfmathsetmacro{\PercentColor}{100*10.0*max((#1-\MaxNumber+0.1),0)}%
+    \xdef\PercentColor{\PercentColor}%
+    %\cellcolor{myblue!\PercentColor}{#1}
+    \ifthenelse{\equal{\PercentColor}{100.0}}{\cellcolor{myblue!\PercentColor}{\textbf{#1}}}{\cellcolor{myblue!\PercentColor}{#1}}
+}
+
+\newcommand{\sota}[3]{%
+    \newcommand*{\MinNumber}{#2}%
+    \newcommand*{\MaxNumber}{#3}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.2*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.2*(\MaxNumber-\MinNumber))}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.0*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.0*(\MaxNumber-\MinNumber))}%
+    \pgfmathsetmacro{\PercentColor}{100*100.0*max((#1-\MaxNumber+0.01),0)}%
+    \xdef\PercentColor{\PercentColor}%
+    \ifthenelse{\equal{\PercentColor}{0.0}}{\cellcolor{myblue2!\PercentColor}{#1}}{\cellcolor{myblue2!\PercentColor}{\textbf{#1}}}
+}
+
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}}
 \newcommand{\mi}{\mathrm{i}}
 \newcommand{\mj}{\mathrm{j}}
 \newcommand{\dif}{\,\mathrm{d}}
+\newcommand{\hfilll}{\hspace{0pt plus 1filll}}
 
 \theoremstyle{plain}
 \newtheorem{algo}{算法~}[chapter]
@@ -273,6 +303,10 @@
 \renewcommand\thefigure{\arabic{figure}}
 \renewcommand\thetable{\arabic{table}}
 
+%% 定义公式命令
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
 %% 表、图、公式编号里加入章节编号
 %\numberwithin{equation}{chapter}
 \counterwithin{equation}{chapter}
@@ -335,7 +369,8 @@
 }
 
 %% enumerate 列表环境间距调节
-\RequirePackage{enumitem}
+%\RequirePackage{enumitem}
+\RequirePackage[inline, shortlabels]{enumitem}
 
 %% 参考文献风格
 \bibliographystyle{reference/GBT7714-2005NLang}
