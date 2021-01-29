@@ -309,9 +309,9 @@
 
 %% 表、图、公式编号里加入章节编号
 %\numberwithin{equation}{chapter}
-\counterwithin{equation}{chapter}
-\counterwithin{figure}{chapter}
-\counterwithin{table}{chapter}
+%\counterwithin{equation}{chapter}
+%\counterwithin{figure}{chapter}
+%\counterwithin{table}{chapter}
 
 %% 颜色宏包
 \RequirePackage{xcolor}
