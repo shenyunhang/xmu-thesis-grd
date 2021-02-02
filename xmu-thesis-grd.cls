@@ -125,7 +125,7 @@
 	  name = {第,章},
 	  number = {\arabic{chapter}},
 	  format = {\bfseries \heiti \centering \zihao{-3}},
-	  pagestyle = {xmu@headings},
+	  pagestyle = {xmu@empty},
 	  beforeskip = 16 bp,
 	  afterskip = 32 bp,
 	  fixskip = true,
@@ -547,7 +547,11 @@
 
 %% 无页眉页脚
 \fancypagestyle{xmu@empty}{
-	\fancyhf{}}
+	\fancyhf{}
+	\fancyfoot{}                                % 去掉页脚
+	\fancyhead{}                                % 去掉页眉
+	\renewcommand{\headrulewidth}{0pt}          % 去掉页眉下面的横线
+}
 
 %% 正文页眉页脚
 \fancypagestyle{xmu@headings}{
