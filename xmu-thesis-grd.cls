@@ -61,7 +61,8 @@
 %% 定义一些标签 
 \def\xmu@label@abstract{摘~~要}
 \def\xmu@label@compactabstract{摘要}
-\def\xmu@label@enabstract{英文摘要}
+\def\xmu@label@enabstract{Abstract}
+\def\xmu@label@encompactabstract{英文摘要}
 \def\xmu@label@keywords{关键词：}
 \def\xmu@label@enkeywords{Key Words:~}
 \def\xmu@label@appendix{附录}
@@ -552,7 +553,8 @@
 %% 英文摘要
 \newenvironment{enabstract}{
 	\cleardoublepage
-	\chapter{\xmu@label@enabstract}
+	\chapter*{\xmu@label@enabstract}
+	\addcontentsline{toc}{chapter}{\xmu@label@encompactabstract}
 	\addcontentsline{etoc}{chapter}{English Abstract} %将英文摘要加入到英文目录中
 	\thispagestyle{plain}
 	\zihao{-4}
