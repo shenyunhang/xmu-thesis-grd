@@ -338,7 +338,8 @@
 \RequirePackage[inline, shortlabels]{enumitem}
 
 %% 参考文献风格
-\bibliographystyle{reference/GBT7714-2005NLang}
+%\bibliographystyle{reference/GBT7714-2005NLang}
+\bibliographystyle{reference/xmuthesis2}
 
 %% 封面标签
 \def\xmu@label@schoolserialnumber{学校编码：}
