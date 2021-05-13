@@ -1,8 +1,8 @@
 %%=============================================================================
 %% xmu-thesis-grd.cls for Xiamen University Graduate Thesis
-%% modified by Maozhong Fu
-%% Version: 1.0
-%% Last update: 2020/09/30
+%% modified by Yunhang Shen
+%% Version: 2.0
+%% Last update: 2021/05/30
 %% Based on BIT-thesis at https://github.com/BIT-thesis/LaTeX-template
 %%==============================================================================
 
@@ -12,7 +12,7 @@
 \RequirePackage[final]{pdfpages}
 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
-\ProvidesClass{xmu-thesis-grd}[2020/09/30 v1.0 xmu-thesis-grd document class]
+\ProvidesClass{xmu-thesis-grd}[2021/05/30 v2.0 xmu-thesis-grd document class]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \newif\ifxmu@master\xmu@masterfalse
@@ -26,9 +26,9 @@
 
 \ProcessOptions\relax
 \ifxmu@istwoside
-	\LoadClass[zihao=-4,a4paper,twoside,openright,UTF8,space=auto]{ctexbook}
+\LoadClass[zihao=-4,a4paper,twoside,openright,UTF8,space=auto]{ctexbook}
 \else
-	\LoadClass[zihao=-4,a4paper,oneside,openany,UTF8,space=auto]{ctexbook}
+\LoadClass[zihao=-4,a4paper,oneside,openany,UTF8,space=auto]{ctexbook}
 \fi
 
 \let\songti\relax
@@ -38,44 +38,26 @@
 \newCJKfontfamily\kaishu{KaiTi}[AutoFakeSlant,AutoFakeBold]
 \newCJKfontfamily\heiti{SimHei}[AutoFakeSlant,AutoFakeBold]
 
-%% 论文原创性和论文著作权使用声明内容
-\def\xmu@label@originality@title{厦门大学学位论文原创性声明}
-\def\xmu@label@originality@authorsign{声明人~~~~（签名）：}
-\def\xmu@label@originality@supervisorsign{指导教师（签名）：}
-\def\xmu@label@originality@signdate{~~~~~~~~年~~~~月~~~~日}
-\def\xmu@label@originality@content{本人呈交的学位论文是本人在导师指导下,独立完成的研究成果。本人在论文写作中参考其他个人或集体已经发表的研究成果，均在文中以适当方式明确标明，并符合法律规范和《厦门大学研究生学术活动规范（试行）》。\par
-	另外，该学位论文为（~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~）课题（组）的研究成果，获得（~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~）课题（组）经费或实验室的资助，在（~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~）实验室完成。（请在以上括号内填写课题或课题组负责人或实验室名称，未有此项声明内容的，可以不作特别声明。）\par
-	本人声明该学位论文不存在剽窃、抄袭等学术不端行为，并愿意承担因学术不端行为所带来的一切后果和法律责任。
-}
-
-\def\xmu@label@copyright@title{厦门大学学位论文著作权使用声明}
-\def\xmu@label@copyright@content{本人同意厦门大学根据《中华人民共和国学位条例暂行实施办法》等规定保留和使用此学位论文，并向主管部门或其指定机构送交学位论文（包括纸质版和电子版），允许学位论文进入厦门大学图书馆及其数据库被查阅、借阅。本人同意厦门大学将学位论文加入全国博士、硕士学位论文共建单位数据库进行检索，将学位论文的标题和摘要汇编出版，采用影印、缩印或者其它方式合理复制学位论文。\par
-	本学位论文属于：\par
-	（\hspace{4.5em}） 1.经厦门大学保密委员会审查核定的涉密学位论文，于~~~~~~~~年~~~~月~~~~日解密，解密后适用上述授权。\par
-	（\hspace{4.5em}） 2.不涉密，适用上述授权。\par
-	（请在以上相应括号内打“√”或填上相应内容。涉密学位论文应是已经厦门大学保密委员会审定过的学位论文，未经厦门大学保密委员会审定的学位论文均为公开学位论文。此声明栏不填写的，默认为公开学位论文，均适用上述授权。）
-}
-\def\xmu@label@copyright@authorsign{声明人（签名）：}
-\def\xmu@label@copyright@signdate{~~~~~~~~年~~~~月~~~~日}
-
-%% 定义一些标签 
+%% 定义一些标签
 \def\xmu@label@abstract{摘~~要}
 \def\xmu@label@compactabstract{摘要}
 \def\xmu@label@enabstract{Abstract}
-\def\xmu@label@encompactabstract{英文摘要}
+\def\xmu@label@encompactabstract{Abstract}
 \def\xmu@label@keywords{关键词：}
 \def\xmu@label@enkeywords{Key Words:~}
 \def\xmu@label@appendix{附录}
 \def\xmu@label@enappendix{Appendix}
-\def\xmu@label@publications{攻读博士学位期间的科研成果}
-\def\xmu@label@enpublications{Publications}
+\def\xmu@label@publications{在学期间完成的相关学术成果}
+\def\xmu@label@enpublications{Relevant Academic Achievements Completed During the Academic Period}
 \def\xmu@label@projects{攻读博士学位期间参与的项目清单}
 \def\xmu@label@enprojects{Projects}
 \def\xmu@label@reference{参考文献}
 \def\xmu@label@enreference{Reference}
 \def\xmu@label@acknowledgements{致~~谢}
 \def\xmu@label@compactacknowledgements{致谢}
-\def\xmu@label@enacknowledgements{Acknowledgement}
+\def\xmu@label@enacknowledgements{Acknowledgements}
+\def\xmu@label@abbreviations{术语缩写汇总}
+\def\xmu@label@enabbreviations{List of Abbreviation}
 \def\xmu@label@notations{符号说明}
 \def\xmu@label@ennotations{Notations}
 \def\xmu@label@content{目~~录}
@@ -85,7 +67,7 @@
 \def\xmu@label@listoftables{表索引}
 \def\xmu@label@enlistoftables{List of Tables}
 
-\def\xmu@value@templateversion{v1.0}
+\def\xmu@value@templateversion{v2.0}
 
 %% the setup of ctex package
 \def\contentsname{\xmu@label@content}
@@ -97,67 +79,94 @@
 \newcommand{\version}{\xmu@value@templateversion}
 
 %% 页面设置。设置纸张类型、页面边距和页眉、页脚
+%\RequirePackage[%
+%	paper=a4paper,%
+%	top=3.5cm,% 上 3.5cm %
+%	bottom=2.5cm,% 下 2.5cm %
+%	left=2.7cm,% 左 2.7cm %
+%	right=2.7cm,% 右 2.7cm %
+%	headheight=1.0cm,% 页眉 2.5cm %
+%	footskip=0.7cm% 页脚 1.8cm %
+%]{geometry}
+%%页边距：上—3.0 厘米，下—3.0 厘米，左—3.0 厘米，右—3.0 厘米，装订线 0 厘米；
+%%页码范围：普通；
+%%页眉距边界：2.2 厘米，页脚距边界：2.2 厘米。
+%% https://mirrors.aliyun.com/CTAN/macros/latex/contrib/geometry/geometry.pdf
 \RequirePackage[%
-	paper=a4paper,%
-	top=3.5cm,% 上 3.5cm %
-	bottom=2.5cm,% 下 2.5cm %
-	left=2.7cm,% 左 2.7cm %
-	right=2.7cm,% 右 2.7cm %
-	headheight=1.0cm,% 页眉 2.5cm %
-	footskip=0.7cm% 页脚 1.8cm %
+paper=a4paper,
+top=3.0cm,
+bottom=3.0cm,
+left=3.0cm,
+right=3.0cm,
+headsep=0.3cm,
+headheight=0.5cm,
+footskip=0.6cm,
+bindingoffset=0cm,
+includehead=false,
+includefoot=false,
 ]{geometry}
 
-%% 设置段落间距
-\parskip 0.5ex plus 0.25ex minus 0.25ex
+%% 段前空 0 磅,段后空 0 磅。
+%% https://latexref.xyz/_005cparindent-_0026-_005cparskip.html
+%\parskip 0.5ex plus 0.25ex minus 0.25ex
+\setlength{\parskip}{0pt}
+
+\RequirePackage{layout}
+
+%% https://latexref.xyz/Layout.html
+%% Make all text pages the same height.
+%\flushbottom
+%% Allow text pages of differing height.
+\raggedbottom
 
 %% 删掉偶数页
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-			\thispagestyle{empty}%
-			\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+    \thispagestyle{empty}%
+    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
-%% 设置行距，大概为22榜
+%% 行距为1.5倍
 \RequirePackage{setspace}
-\setstretch{1.523}
+\setstretch{1.5}
+\linespread{1.5}
 
-%% 设置章节格式, 黑体三号加粗居中，行距22磅，与正文或节标题的间距设定为段后间距1行。章序号与章名间空一格。
-\ctexset{chapter={
-	  name = {第,章},
-	  number = {\arabic{chapter}},
-	  format = {\bfseries \heiti \centering \zihao{-3}},
-	  pagestyle = {xmu@empty},
-	  beforeskip = 16 bp,
-	  afterskip = 32 bp,
-	  fixskip = true,
-	 }
+%% https://mirrors.sjtug.sjtu.edu.cn/ctan/language/chinese/ctex/ctex.pdf
+%% 各章标题,例如:“第1章 引言”。 章序号采用阿拉伯数字,章序号与标题名之间空一个汉字符。采用黑体小三号字加粗,居中书写,单倍行距,段前空 24 磅,段后空 18 磅。论文的摘要,目录,参考文献,附录,致谢,在学期间完成的相关学术成果等部分的标题与章标题属于同一等级,也使用上述格式;英文摘要部分的标题“Abstract”以及英文目录“Contents”,采用 Arial 体小三号字加粗。
+\ctexset{chapter = {
+        name = {第,章},
+        number = {\arabic{chapter}},
+        format = {\bfseries \heiti \centering \zihao{-3}},
+        pagestyle = {xmu@headings},
+        beforeskip = 24bp + 8bp,
+        afterskip = 18bp + 15bp + 10bp,
+        fixskip = true,
+    }
 }
 
-%% 设置一级章节格式
-% 黑体四号加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。
-\ctexset{section={
-	  format={\raggedright \bfseries \heiti \zihao{4}},
-	  beforeskip = 28bp plus 1ex minus .2ex,
-	  afterskip = 24bp plus .2ex,
-	  fixskip = true,
-	 }
+%% 一级节标题,例如:“2.1 实验装置与实验方法”。节标题序号与标题名之间空一个汉字符(下同)。采用黑体四号(14pt)字加粗居左书写,行距为1.5倍,段前空 24 磅,段后空 6 磅。
+\ctexset{section = {
+        format = {\raggedright \bfseries \heiti \zihao{4}},
+        beforeskip = 24bp + 7bp + 8pt,
+        afterskip = 6bp + 14bp + 0pt,
+        fixskip = true,
+    }
 }
 
-%% 设置二级标题格式
-% 黑体小四加粗顶左，行距22磅，与上一节的间距为1行，与下面正文或节标题的段间间距为0.5行。序号与题目间空一格。 
-\ctexset{subsection={
-			format = {\bfseries \heiti \raggedright \zihao{-4}},
-			beforeskip =28bp plus 1ex minus .2ex,
-			afterskip = 24bp plus .2ex,
-			fixskip = true,
-		}
+%% 二级节(目)标题,例如:“2.1.1实验装置”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。
+\ctexset{subsection = {
+        format = {\bfseries \heiti \raggedright \zihao{-4}},
+        beforeskip = 24bp + 14bp,
+        afterskip = 6bp + 12bp,
+        fixskip = true,
+    }
 }
 
-%% 设置三节标题格式
-\ctexset{subsubsection={
-			format={\heiti \raggedright \zihao{-4}},
-			beforeskip=28bp plus 1ex minus .2ex,
-			afterskip=24bp plus .2ex,
-			fixskip=true,
-		}
+%% 三级节(子目)标题,例如:“2.1.2.1 归纳法”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。一般情况下不建议使用三级节标题。
+\ctexset{subsubsection = {
+        format = {\heiti \raggedright \zihao{-4}},
+        beforeskip = 24bp + 14bp,
+        afterskip = 6bp + 12bp,
+        fixskip = true,
+    }
 }
 
 %% 选择编译
@@ -171,21 +180,21 @@
 
 \let\xmu@cleardoublepage\cleardoublepage
 \newcommand{\xmu@clearemptydoublepage}{ % 对于 openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。
-	\clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}}
+    \clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}}
 \let\cleardoublepage\xmu@clearemptydoublepage
 
 \renewcommand{\frontmatter}{ % 修改 frontmatter 的页码为大写罗马格式，并调整页面风格
-	\if@openright\cleardoublepage\else\clearpage\fi
-	\@mainmatterfalse
-	\pagenumbering{Roman}
-	\pagestyle{xmu@headings}
+    \if@openright\cleardoublepage\else\clearpage\fi
+    \@mainmatterfalse
+    \pagenumbering{Roman}
+    \pagestyle{xmu@headings}
 }
 
 \renewcommand{\mainmatter}{ % 修改 mainmatter 的页码为阿拉伯格式，并调整页面风格
-	\if@openright\cleardoublepage\else\clearpage\fi
-	\@mainmattertrue
-	\pagenumbering{arabic}
-	\pagestyle{xmu@headings}
+    \if@openright\cleardoublepage\else\clearpage\fi
+    \@mainmattertrue
+    \pagenumbering{arabic}
+    \pagestyle{xmu@headings}
 }
 
 %% 复杂表格
@@ -194,8 +203,6 @@
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
-
-
 
 %% 定义几个常用的数学常量符号
 \newcommand{\me}{\mathrm{e}}
@@ -219,9 +226,10 @@
 
 %% 英文字体使用 Times New Roman
 \RequirePackage{xltxtra} % \XeTeX Logo
-\setmainfont{Times New Roman}
-\setsansfont{Arial}
-\setmonofont{Courier New}
+\RequirePackage{fontspec}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+\setsansfont[Ligatures=TeX]{Arial}
+\setmonofont[Ligatures=TeX]{Courier New}
 
 %% graphics packages
 \RequirePackage{graphicx}
@@ -236,23 +244,29 @@
 %% 设置图表标题选项
 \RequirePackage{amsmath}
 \RequirePackage{caption}
-\DeclareCaptionLabelSeparator{zhspace}{：}
+\DeclareCaptionLabelSeparator{zhspace}{ }
 \DeclareCaptionFont{captionfont}{\bfseries \songti \zihao{-4}}
 \captionsetup{
-	font = {captionfont},
-	labelsep = zhspace,
+    font = {captionfont},
+    labelsep = zhspace,
 }
 \captionsetup[table]{
-	position = top,
-	aboveskip = 6bp,
-	belowskip = 6bp,
+    position = top,
+    aboveskip = 6bp,
+    belowskip = 6bp,
+    skip = -10pt,
 }
 \numberwithin{table}{chapter}
 \captionsetup[figure]{
-	position = bottom,
-	aboveskip = 6bp,
-	belowskip = 6bp,
+    position = bottom,
+    aboveskip = 6bp,
+    belowskip = 6bp,
+    skip = 2pt,
 }
+
+\setlength{\abovecaptionskip}{0pt}
+\setlength{\belowcaptionskip}{0pt}
+
 
 %% 如果插入的图片没有指定扩展名，那么依次搜索下面的扩展名所对应的文件
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg,.jpeg}
@@ -266,6 +280,13 @@
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
+
+%% 表与上下正文之间各空一行。
+\setlength{\floatsep}{12pt}
+\setlength{\textfloatsep}{12pt}
+\setlength{\intextsep}{12pt}
+
+\setlength\intextsep{0mm}
 
 %% 定公式、图、表编号格式
 \renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
@@ -287,33 +308,33 @@
 %% 设置源代码显示格式
 \RequirePackage{listings}
 \lstset{tabsize=4, %
-	frame=shadowbox, %把代码用带有阴影的框圈起来
-	commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
-	rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
-	keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
-	showstringspaces=false,%不显示代码字符串中间的空格标记
-	stringstyle=\ttfamily, % 代码字符串的特殊格式
-	keepspaces=true, %
-	breakindent=22pt, %
-	numbers=left,%左侧显示行号
-	stepnumber=1,%
-	numberstyle=\tiny, %行号字体用小号
-	basicstyle=\footnotesize, %
-	showspaces=false, %
-	flexiblecolumns=true, %
-	breaklines=true, %对过长的代码自动换行
-	breakautoindent=true,%
-	breakindent=4em, %
-	aboveskip=1em, %代码块边框
-	%% added by http://bbs.ctex.org/viewthread.php?tid=53451
-	fontadjust,
-	captionpos=t,
-	framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
-	xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
-	texcl=true,
-	% 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
-	extendedchars=false,columns=flexible,mathescape=true
-	numbersep=-1em
+    frame=shadowbox, %把代码用带有阴影的框圈起来
+    commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
+    rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
+    keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+    showstringspaces=false,%不显示代码字符串中间的空格标记
+    stringstyle=\ttfamily, % 代码字符串的特殊格式
+    keepspaces=true, %
+    breakindent=22pt, %
+    numbers=left,%左侧显示行号
+    stepnumber=1,%
+    numberstyle=\tiny, %行号字体用小号
+    basicstyle=\footnotesize, %
+    showspaces=false, %
+    flexiblecolumns=true, %
+    breaklines=true, %对过长的代码自动换行
+    breakautoindent=true,%
+    breakindent=4em, %
+    aboveskip=1em, %代码块边框
+    %% added by http://bbs.ctex.org/viewthread.php?tid=53451
+    fontadjust,
+    captionpos=t,
+    framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
+    xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
+    texcl=true,
+    % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
+    extendedchars=false,columns=flexible,mathescape=true
+    numbersep=-1em
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
 
@@ -321,16 +342,16 @@
 \definecolor{navyblue}{RGB}{0,0,128}
 \RequirePackage{hyperref}
 \hypersetup{
-	bookmarksnumbered,%
-	linktoc=all,
-	colorlinks=true,
-	citecolor=navyblue,
-	filecolor=cyan,
-	linkcolor=navyblue,
-	linkbordercolor=navyblue,
-	urlcolor=navyblue,
-	plainpages=false,%
-	pdfstartview=FitH
+    bookmarksnumbered,%
+    linktoc=all,
+    colorlinks=true,
+    citecolor=navyblue,
+    filecolor=cyan,
+    linkcolor=navyblue,
+    linkbordercolor=navyblue,
+    urlcolor=navyblue,
+    plainpages=false,%
+    pdfstartview=FitH
 }
 
 %% enumerate 列表环境间距调节
@@ -338,166 +359,92 @@
 \RequirePackage[inline, shortlabels]{enumitem}
 
 %% 参考文献风格
-%\bibliographystyle{reference/GBT7714-2005NLang}
-\bibliographystyle{reference/xmuthesis2}
+\bibliographystyle{reference/GBT7714-2005NLang}
+%\bibliographystyle{reference/xmuthesis2}
 
-%% 封面标签
-\def\xmu@label@schoolserialnumber{学校编码：}
-\def\xmu@label@studentnumber{学~~~~~~~~号：}
-\def\xmu@label@advisor{指导教师姓名：}
-\def\xmu@label@major{专~~业~~~~名~~称：}
-\def\xmu@label@submitdate{论文提交日期：}
-\def\xmu@label@defenddate{论文答辩日期：}
-\def\xmu@label@grantdate{学位授予日期：}
-
-%% 封面内容
-\def\xmu@value@schoolserialnumber{10384}
-\def\xmu@value@studentnumber{200215001}
-\ifxmu@master
-	\def\xmu@value@thesistype{硕~~~~士~~~~学~~~~位~~~~论~~~~文}
-\else 
-	\def\xmu@value@thesistype{博~~~~士~~~~学~~~~位~~~~论~~~~文}
-\fi
-\def\xmu@value@title{资产重组：一个资不抵债国有企业的最佳选择}
-\def\xmu@value@entitle{Capital Reorganization: The Best Choice for A State-Owned Enterprise with Financial Crisis}
-\def\xmu@value@author{作者姓名}
-\def\xmu@value@advisor{XXXX教授}
-\def\xmu@value@major{信息与信号处理}
-\def\xmu@value@submitdate{~~~~年~~~~月}
-\def\xmu@value@defenddate{~~~~年~~~~月}
-\def\xmu@value@grantdate{~~~~年~~~~月}
-\def\xmu@value@printdate{~~~~年~~~~月}
-
-%% 设置封面内容的命令
-\newcommand\schoolserialnumber[1]{\def\xmu@value@schoolserialnumber{#1}}
-\newcommand\studentnumber[1]{\def\xmu@value@studentnumber{#1}}
+%% 设置标题
+\def\xmu@value@title{}
 \renewcommand\title[2][\xmu@value@title]{
-	\def\xmu@value@title{#2}
-	\def\xmu@value@titlemark{\MakeUppercase{#1}}}
-\newcommand\entitle[2][\xmu@value@entitle]{
-	\def\xmu@value@entitle{#2}
-	\def\xmu@value@entitlemark{\MakeUppercase{#1}}}
-\renewcommand\author[1]{\def\xmu@value@author{#1}}
-\newcommand\advisor[1]{\def\xmu@value@advisor{#1}}
-\newcommand\major[1]{\def\xmu@value@major{#1}}
-\newcommand\submitdate[1]{\def\xmu@value@submitdate{#1}}
-\newcommand\defenddate[1]{\def\xmu@value@defenddate{#1}}
-\newcommand\grantdate[1]{\def\xmu@value@grantdate{#1}}
-\newcommand\printdate[1]{\def\xmu@value@printdate{#1}}
+    \def\xmu@value@title{#2}
+    \def\xmu@value@titlemark{\MakeUppercase{#1}}}
 
 %% 绘制封面
 \newcommand\makecover{
-\newpage
-\cleardoublepage
-\thispagestyle{empty}
-%\pdfbookmark[0]{封面}{cover}
+    \newpage
+    \cleardoublepage
+    \thispagestyle{empty}
+    %\pdfbookmark[0]{封面}{cover}
 
-\ifxmu@pdf
-	\includepdf[pages=-]{pdf_files/cover.pdf}
-\else
+    \ifxmu@pdf
+    \includepdf[pages=-]{pdf_files/cover.pdf}
+    \else
 
-{\bfseries \songti \zihao{-4} \noindent \xmu@label@schoolserialnumber \xmu@value@schoolserialnumber}  \\
-{\bfseries \songti \zihao{-4} \xmu@label@studentnumber \xmu@value@studentnumber}
+    \fi
 
-\vskip 20pt
-
-\begin{figure}[htb!]
-	\centering
-	\includegraphics[width=4.82cm]{figures/xmu-logo.pdf}
-\end{figure}
-
-\begin{center}
-	{\bfseries \songti \zihao{2} \xmu@value@thesistype}
-	\vskip 35pt
-		{\bfseries \heiti \zihao{-2} \xmu@value@title}
-	\vskip 15pt
-		{\bfseries \zihao{3} \xmu@value@entitle}
-	\vskip 55pt
-		{\bfseries \kaishu \zihao{-2} \xmu@value@author}
-	\vskip 30pt
-
-		{\kaishu \zihao{-3}
-			\begin{tabular}{r p{1mm} l}
-				\xmu@label@advisor    &  & \xmu@value@advisor
-				\\
-				\xmu@label@major      &  & \xmu@value@major
-				\\
-				\xmu@label@submitdate &  & \xmu@value@submitdate
-				\\
-				\xmu@label@defenddate &  & \xmu@value@defenddate
-				\\
-				\xmu@label@grantdate  &  & \xmu@value@grantdate
-			\end{tabular}}
-
-	\vskip 100pt
-		{\bfseries \songti \zihao{-4} \xmu@value@printdate}
-\end{center}
-
-\vskip \stretch{0.5}
-	
-\fi
-
-\clearpage
-\if@twoside
-	\thispagestyle{empty}
-	\cleardoublepage
-\fi
+    \clearpage
+    \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+    \fi
 }
 
 %% 绘制原创性声明
 \newcommand\makeoriginalitystatement{
-	\cleardoublepage
-	%\pdfbookmark[0]{原创性声明}{originality_statement}
-	\thispagestyle{empty}
-	
-	\ifxmu@pdf
-		\includepdf[pages=-]{pdf_files/originality_statement.pdf}
-	\else
-		\begin{center}
-			{\bfseries \heiti \zihao{-2} \xmu@label@originality@title}
-		\end{center}
-		\vskip 10pt
-			{\songti\zihao{4} \par \xmu@label@originality@content}
-		\vskip 20pt
-		\hspace{8cm}{\zihao{4}\xmu@label@originality@authorsign\par}
-		\hspace{8cm}{\zihao{4}\xmu@label@originality@supervisorsign\par}
-		\vskip 20pt
-		\hspace{8.4cm} {\zihao{4}\xmu@label@originality@signdate}
-	\fi
+    \cleardoublepage
+    %\pdfbookmark[0]{原创性声明}{originality_statement}
+    \thispagestyle{empty}
 
-	\clearpage
-	\if@twoside
-		\thispagestyle{empty}
-		\cleardoublepage
-	\fi
+    \ifxmu@pdf
+    \includepdf[pages=-]{pdf_files/originality_statement.pdf}
+    \else
+
+    \fi
+
+    \clearpage
+    \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+    \fi
 }
 
 %% 论文著作权使用声明
 \newcommand\makecopyrightstatement{
-	\cleardoublepage
-	%\pdfbookmark[0]{著作权使用声明}{copyright_statement}
-	\thispagestyle{empty}
-	
-	\ifxmu@pdf
-		\includepdf[pages=-]{pdf_files/copyright_statement.pdf}
-		
-	\else
- 		\begin{center}
-			{\bfseries \heiti \zihao{-2} \xmu@label@copyright@title}
-		\end{center}
-		\vskip 10pt
-			{\songti\zihao{4} \par \xmu@label@copyright@content}
-		\vskip 20pt
-		\hspace{8cm}{\zihao{4}\xmu@label@copyright@authorsign\par}
-		\vskip 20pt
-		\hspace{8.4cm} {\zihao{4}\xmu@label@copyright@signdate}
-	\fi
+    \cleardoublepage
+    %\pdfbookmark[0]{著作权使用声明}{copyright_statement}
+    \thispagestyle{empty}
 
-	\clearpage
-	\if@twoside
-		\thispagestyle{empty}
-		\cleardoublepage
-	\fi
+    \ifxmu@pdf
+    \includepdf[pages=-]{pdf_files/copyright_statement.pdf}
+
+    \else
+
+    \fi
+
+    \clearpage
+    \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+    \fi
+}
+
+%% 论文答辩委员会名单
+\newcommand\makeListofThesisDefenseCommittees{
+    \cleardoublepage
+    %\pdfbookmark[0]{学位论文答辩委员会名单}{list_of_thesis_defense_committees}
+    \thispagestyle{empty}
+
+    \ifxmu@pdf
+    \includepdf[pages=-]{pdf_files/list_of_thesis_defense_committees.pdf}
+
+    \else
+
+    \fi
+
+    \clearpage
+    \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+    \fi
 }
 
 %% 页眉页脚
@@ -505,47 +452,48 @@
 \fancyhf{}
 
 %% 只有页脚无页眉
-\fancypagestyle{plain}{ 
-\fancyfoot[C]{\songti \zihao{5} {\thepage}} % 页脚格式
-\fancyhead{}                                % 去掉页眉
-\renewcommand{\headrulewidth}{0pt}          % 去掉页眉下面的横线
+\fancypagestyle{plain}{
+    \fancyfoot[C]{\songti \zihao{5} {\thepage}} %% 页脚格式
+    \fancyhead{}                                %% 去掉页眉
+    \renewcommand{\headrulewidth}{0pt}          %% 去掉页眉下面的横线
 }
 
 %% 无页眉页脚
 \fancypagestyle{xmu@empty}{
-	\fancyhf{}
-	\fancyfoot{}                                % 去掉页脚
-	\fancyhead{}                                % 去掉页眉
-	\renewcommand{\headrulewidth}{0pt}          % 去掉页眉下面的横线
+    \fancyhf{}
+    \fancyfoot{}                                %% 去掉页脚
+    \fancyhead{}                                %% 去掉页眉
+    \renewcommand{\headrulewidth}{0pt}          %% 去掉页眉下面的横线
 }
 
 %% 正文页眉页脚
 \fancypagestyle{xmu@headings}{
-	\fancyhf{}
-	\fancyfoot[C]{\songti\zihao{5} \thepage}
+    \fancyhf{}
 
-	\fancyhead[CO]{\zihao{5} \songti \leftmark}
-	\fancyhead[CE]{\zihao{5} \songti {\xmu@value@title}}
+    \fancyfoot[C]{\songti\zihao{5} \thepage}                    %% 页脚格式
+
+    \fancyhead[CO]{\zihao{5} \songti \leftmark}                 %% 奇数页眉
+    \fancyhead[CE]{\zihao{5} \songti {\xmu@value@title}}        %% 偶数页眉
 }
 
 %% 中文摘要
 \newenvironment{abstract}{
-	\cleardoublepage
-	\chapter*{\xmu@label@abstract}
-% 	\markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
-	\addcontentsline{toc}{chapter}{\xmu@label@compactabstract}
-	\addcontentsline{etoc}{chapter}{Chinese Abstract} %将中文摘要加入到英文目录中
-	\thispagestyle{plain}
-	\songti\zihao{-4}
+    \cleardoublepage
+    \chapter*{\xmu@label@abstract}
+    \markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@compactabstract}
+    \addcontentsline{etoc}{chapter}{Chinese Abstract} %将中文摘要加入到英文目录中
+    \thispagestyle{xmu@headings}
+    \songti\zihao{-4}
 }
 
 %% 下一页从偶数页开始
 \newcommand\beginatevenpage{
-	\clearpage
-	\if@twoside
-		\thispagestyle{empty}
-		\cleardoublepage
-	\fi
+    \clearpage
+    \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+    \fi
 }
 
 %% 中文关键词
@@ -553,12 +501,13 @@
 
 %% 英文摘要
 \newenvironment{enabstract}{
-	\cleardoublepage
-	\chapter*{\xmu@label@enabstract}
-	\addcontentsline{toc}{chapter}{\xmu@label@encompactabstract}
-	\addcontentsline{etoc}{chapter}{English Abstract} %将英文摘要加入到英文目录中
-	\thispagestyle{plain}
-	\zihao{-4}
+    \cleardoublepage
+    \chapter*{\xmu@label@enabstract}
+    \markboth{\xmu@label@encompactabstract}{\xmu@label@encompactabstract} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@encompactabstract}
+    \addcontentsline{etoc}{chapter}{English Abstract} %将英文摘要加入到英文目录中
+    \thispagestyle{xmu@headings}
+    \zihao{-4}
 }
 
 %% 英文关键词
@@ -590,181 +539,204 @@
 {\hspace{.5em}\titlerule*{.} \contentspage}
 
 \renewcommand\tableofcontents{
-	\if@twocolumn
-		\@restonecoltrue\onecolumn
-	\else
-		\@restonecolfalse
-	\fi
-	\chapter*{\contentsname}
-	\thispagestyle{plain}
-	\@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
-	\pdfbookmark[0]{目录}{contents}
-	\makeatletter
-	\renewcommand{\@pnumwidth}{2em}% 1.55em
-	\makeatother
-	\@starttoc{toc}%
-	\if@restonecol\twocolumn\fi
+    \if@twocolumn
+    \@restonecoltrue\onecolumn
+    \else
+    \@restonecolfalse
+    \fi
+    \chapter*{\contentsname}
+    \thispagestyle{xmu@headings}
+    \@mkboth{\contentsname}{\contentsname}%
+    \pdfbookmark[0]{目录}{contents}
+    \makeatletter
+    \renewcommand{\@pnumwidth}{2em}% 1.55em
+    \makeatother
+    \@starttoc{toc}%
+    \if@restonecol\twocolumn\fi
 }
 \setcounter{secnumdepth}{4}  % 目录显示的章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
 
 %% 英文目录
-\newcommand\enchapter[1]{\addcontentsline{etoc}{chapter}{\protect\numberline{\thechapter}#1}}
+\newcommand\enchapter[1]{\addcontentsline{etoc}{chapter}{\protect\numberline{Chapter \thechapter}#1}}
 \newcommand\ensection[1]{\addcontentsline{etoc}{section}{\protect\numberline{\thesection}#1}}
 \newcommand\ensubsection[1]{\addcontentsline{etoc}{subsection}{\protect\numberline{\thesubsection}#1}}
 \newcommand\ensubsubsection[1]{\addcontentsline{etoc}{subsubsection}{\protect\numberline{\thesubsubsection}#1}}
 
 \newcommand\entableofcontents{
-	\if@twocolumn
-		\@restonecoltrue\onecolumn
-	\else
-		\@restonecolfalse
-	\fi
-	\chapter*{\encontentsname}
-	\thispagestyle{plain}
-	\@mkboth{\MakeUppercase\encontentsname}{\MakeUppercase\encontentsname}%
-	\pdfbookmark[0]{英文目录}{english_contents}
-	\makeatletter
-	\renewcommand{\@pnumwidth}{2em}% 1.55em
-	\makeatother
-	\@starttoc{etoc}%
-	\if@restonecol\twocolumn\fi
+    \if@twocolumn
+    \@restonecoltrue\onecolumn
+    \else
+    \@restonecolfalse
+    \fi
+    \chapter*{\encontentsname}
+    \thispagestyle{xmu@headings}
+    \@mkboth{\encontentsname}{\encontentsname}%
+    \pdfbookmark[0]{英文目录}{english_contents}
+    \makeatletter
+    \renewcommand{\@pnumwidth}{2em}% 1.55em
+    \makeatother
+    \@starttoc{etoc}%
+    \if@restonecol\twocolumn\fi
 }
 
 %% 参考文献环境
 \renewenvironment{thebibliography}[1]{
-	\zihao{5}
-	\chapter*{\bibname}
-	\addcontentsline{etoc}{chapter}{\xmu@label@enreference}
-	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-	\addcontentsline{toc}{chapter}{\xmu@label@reference}
-	\list{\@biblabel{\@arabic\c@enumiv}}%
-	{\settowidth\labelwidth{\@biblabel{#1}}%
-		\leftmargin\labelwidth
-		\advance\leftmargin\labelsep
-		\setlength{\parsep}{1mm}
-		\setlength{\labelsep}{0.5em}
-		\setlength{\itemsep}{0.05pc}
-		\setlength{\listparindent}{0in}
-		\setlength{\itemindent}{0in}
-		\setlength{\rightmargin}{0in}
-		\@openbib@code
-		\usecounter{enumiv}%
-		\let\p@enumiv\@empty
-		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
-	\sloppy
-	\clubpenalty4000
-	\@clubpenalty \clubpenalty
-	\widowpenalty4000%
-	\sfcode`\.\@m}
+    \zihao{5}
+    \chapter*{\bibname}
+    \addcontentsline{etoc}{chapter}{\xmu@label@enreference}
+    \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+    \addcontentsline{toc}{chapter}{\xmu@label@reference}
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+    {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \setlength{\parsep}{1mm}
+        \setlength{\labelsep}{0.5em}
+        \setlength{\itemsep}{0.05pc}
+        \setlength{\listparindent}{0in}
+        \setlength{\itemindent}{0in}
+        \setlength{\rightmargin}{0in}
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    \sloppy
+    \clubpenalty4000
+    \@clubpenalty \clubpenalty
+    \widowpenalty4000%
+    \sfcode`\.\@m}
 {\def\@noitemerr
-	{\@latex@warning{Empty `thebibliography' environment}}%
-	\endlist}
+    {\@latex@warning{Empty `thebibliography' environment}}%
+    \endlist}
 
 %% 论文发表情况
 \newenvironment{publications}[1]{
-	\chapter{\xmu@label@publications}
-	\addcontentsline{etoc}{chapter}{\xmu@label@enpublications}
-	\@mkboth{\MakeUppercase\xmu@label@publications}
-	{\MakeUppercase\xmu@label@publications}%
-	\list{\@biblabel{\@arabic\c@enumiv}}%
-	{\settowidth\labelwidth{\@biblabel{#1}}%
-		\leftmargin\labelwidth
-		\advance\leftmargin\labelsep
-		\setlength{\parsep}{1mm}
-		\setlength{\labelsep}{0.5em}
-		\setlength{\itemsep}{0.05pc}
-		\setlength{\listparindent}{0in}
-		\setlength{\itemindent}{0in}
-		\setlength{\rightmargin}{0in}
-		\@openbib@code
-		\usecounter{enumiv}%
-		\let\p@enumiv\@empty
-		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
-	\sloppy
-	\clubpenalty4000
-	\@clubpenalty \clubpenalty
-	\widowpenalty4000%
-	\sfcode`\.\@m}
+    \chapter*{\xmu@label@publications}
+    \addcontentsline{toc}{chapter}{\xmu@label@publications}
+    \addcontentsline{etoc}{chapter}{\xmu@label@enpublications}
+    \@mkboth{\MakeUppercase\xmu@label@publications}
+    {\MakeUppercase\xmu@label@publications}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+    {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \setlength{\parsep}{1mm}
+        \setlength{\labelsep}{0.5em}
+        \setlength{\itemsep}{0.05pc}
+        \setlength{\listparindent}{0in}
+        \setlength{\itemindent}{0in}
+        \setlength{\rightmargin}{0in}
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    \sloppy
+    \clubpenalty4000
+    \@clubpenalty \clubpenalty
+    \widowpenalty4000%
+    \sfcode`\.\@m}
 {\def\@noitemerr
-	{\@latex@warning{Empty `publications' environment}}%
-	\endlist}
+    {\@latex@warning{Empty `publications' environment}}%
+    \endlist}
 
 %% 项目参与情况
 \newenvironment{projects}[1]{
-	\chapter{\xmu@label@projects}%
-	\addcontentsline{etoc}{chapter}{\xmu@label@enprojects}
-	\@mkboth{\MakeUppercase\xmu@label@projects}
-	{\MakeUppercase\xmu@label@projects}%
-	\list{\@biblabel{\@arabic\c@enumiv}}%
-	{\settowidth\labelwidth{\@biblabel{#1}}%
-		\leftmargin\labelwidth
-		\advance\leftmargin\labelsep
-		\@openbib@code
-		\usecounter{enumiv}%
-		\let\p@enumiv\@empty
-		\renewcommand\theenumiv{\@arabic\c@enumiv}}%
-	\sloppy
-	\clubpenalty4000
-	\@clubpenalty \clubpenalty
-	\widowpenalty4000%
-	\sfcode`\.\@m}
+    \chapter{\xmu@label@projects}%
+    \addcontentsline{etoc}{chapter}{\xmu@label@enprojects}
+    \@mkboth{\MakeUppercase\xmu@label@projects}
+    {\MakeUppercase\xmu@label@projects}%
+    \list{\@biblabel{\@arabic\c@enumiv}}%
+    {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \@openbib@code
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+    \sloppy
+    \clubpenalty4000
+    \@clubpenalty \clubpenalty
+    \widowpenalty4000%
+    \sfcode`\.\@m}
 {\def\@noitemerr
-	{\@latex@warning{Empty `projects' environment}}%
-	\endlist}
+    {\@latex@warning{Empty `projects' environment}}%
+    \endlist}
 
-%% 致谢 
+%% 致谢
 \newenvironment{acknowledgements}{
-	\cleardoublepage
-	\chapter*{\xmu@label@acknowledgements}
-	\markboth{\xmu@label@compactacknowledgements}{\xmu@label@compactacknowledgements} % 页眉
-	\addcontentsline{toc}{chapter}{\xmu@label@compactacknowledgements}
-	\addcontentsline{etoc}{chapter}{\xmu@label@enacknowledgements}
-	\songti
+    \cleardoublepage
+    \chapter*{\xmu@label@acknowledgements}
+    \markboth{\xmu@label@compactacknowledgements}{\xmu@label@compactacknowledgements} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@compactacknowledgements}
+    \addcontentsline{etoc}{chapter}{\xmu@label@enacknowledgements}
+    \songti
 }
+
+%% 缩写汇总
+\newenvironment{abbreviations}[1][2.5cm]{
+    \cleardoublepage
+    \chapter{\xmu@label@abbreviations} % no tocline
+    \addcontentsline{etoc}{chapter}{\xmu@label@enabbreviations}
+    \thispagestyle{xmu@headings}
+    \noindent\begin{list}{}%
+        {\vskip-30bp\zihao{-4}
+            \renewcommand\makelabel[1]{##1\hfil}
+            \setlength{\labelwidth}{#1} % 标签盒子宽度
+            \setlength{\labelsep}{0.5cm} % 标签与列表文本距离
+            \setlength{\itemindent}{0cm} % 标签缩进量
+            \setlength{\leftmargin}{\labelwidth+\labelsep} % 左边界
+            \setlength{\rightmargin}{0cm}
+            \setlength{\parsep}{0cm} % 段落间距
+            \setlength{\itemsep}{0cm} % 标签间距
+            \setlength{\listparindent}{0cm} % 段落缩进量
+            \setlength{\topsep}{0pt} % 标签与上文的间距
+    }}{\end{list}}
 
 %% 符号
 \newenvironment{notations}[1][2.5cm]{
-	\cleardoublepage
-	\chapter{\xmu@label@notations} % no tocline
-	\addcontentsline{etoc}{chapter}{\xmu@label@ennotations}
-	\thispagestyle{plain}
-	\noindent\begin{list}{}%
-		{\vskip-30bp\zihao{-4}
-		\renewcommand\makelabel[1]{##1\hfil}
-		\setlength{\labelwidth}{#1} % 标签盒子宽度
-		\setlength{\labelsep}{0.5cm} % 标签与列表文本距离
-		\setlength{\itemindent}{0cm} % 标签缩进量
-		      \setlength{\leftmargin}{\labelwidth+\labelsep} % 左边界
-		      \setlength{\rightmargin}{0cm}
-		      \setlength{\parsep}{0cm} % 段落间距
-		      \setlength{\itemsep}{0cm} % 标签间距
-		      \setlength{\listparindent}{0cm} % 段落缩进量
-		      \setlength{\topsep}{0pt} % 标签与上文的间距
-		      }}{\end{list}}
+    \cleardoublepage
+    \chapter{\xmu@label@notations} % no tocline
+    \addcontentsline{etoc}{chapter}{\xmu@label@ennotations}
+    \thispagestyle{plain}
+    \noindent\begin{list}{}%
+        {\vskip-30bp\zihao{-4}
+            \renewcommand\makelabel[1]{##1\hfil}
+            \setlength{\labelwidth}{#1} % 标签盒子宽度
+            \setlength{\labelsep}{0.5cm} % 标签与列表文本距离
+            \setlength{\itemindent}{0cm} % 标签缩进量
+            \setlength{\leftmargin}{\labelwidth+\labelsep} % 左边界
+            \setlength{\rightmargin}{0cm}
+            \setlength{\parsep}{0cm} % 段落间距
+            \setlength{\itemsep}{0cm} % 标签间距
+            \setlength{\listparindent}{0cm} % 段落缩进量
+            \setlength{\topsep}{0pt} % 标签与上文的间距
+    }}{\end{list}}
 
 % 图索引
 \newcommand\makelistoffigures{
-	\cleardoublepage
-	\makeatletter
-	\renewcommand{\@pnumwidth}{1.55em}% 1.55em
-	\makeatother
-	\listoffigures
-	\addcontentsline{toc}{chapter}{\listfigurename}
-	\addcontentsline{etoc}{chapter}{\xmu@label@enlistoffigures}
-	\thispagestyle{plain}
+    \cleardoublepage
+    \makeatletter
+    \renewcommand{\@pnumwidth}{1.55em}% 1.55em
+    \makeatother
+    \listoffigures
+    \addcontentsline{toc}{chapter}{\listfigurename}
+    \addcontentsline{etoc}{chapter}{\xmu@label@enlistoffigures}
+    \thispagestyle{xmu@headings}
+    \@mkboth{\listfigurename}{\listfigurename}%
 }
 
 % 表索引
 \newcommand\makelistoftables{
-	\cleardoublepage
-	\makeatletter
-	\renewcommand{\@pnumwidth}{1.55em}% 1.55em
-	\makeatother
-	\listoftables
-	\addcontentsline{toc}{chapter}{\listtablename}
-	\addcontentsline{etoc}{chapter}{\xmu@label@enlistoftables}
-	\thispagestyle{plain}
+    \cleardoublepage
+    \makeatletter
+    \renewcommand{\@pnumwidth}{1.55em}% 1.55em
+    \makeatother
+    \listoftables
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \addcontentsline{etoc}{chapter}{\xmu@label@enlistoftables}
+    \thispagestyle{xmu@headings}
+    \@mkboth{\listtablename}{\listtablename}%
 }
 
 %% 单位宏包
@@ -773,9 +745,9 @@
 
 %% 附录编号样式
 \newcommand\setappendixnumberformat{
-	\renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
-	\renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
-	\renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+    \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
+    \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
+    \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
 }
 
 \endinput
