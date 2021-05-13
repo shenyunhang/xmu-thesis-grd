@@ -37,13 +37,13 @@
 \def\xmu@label@compactabstract{摘要}
 \def\xmu@label@enabstract{Abstract}
 \def\xmu@label@keywords{关键词：}
-\def\xmu@label@enkeywords{Key Words:~}
+\def\xmu@label@enkeywords{Keywords:~}
 \def\xmu@label@appendix{附录}
 \def\xmu@label@enappendix{Appendix}
 \def\xmu@label@publications{在学期间完成的相关学术成果}
-\def\xmu@label@enpublications{Relevant Academic Achievements Completed During the Acad-\newline emic Period}
+\def\xmu@label@enpublications{Relevant Academic Achievements Completed During the Acad-\linebreak emic Period}
 \def\xmu@label@reference{参考文献}
-\def\xmu@label@enreference{Reference}
+\def\xmu@label@enreference{References}
 \def\xmu@label@acknowledgements{致~~~~谢}
 \def\xmu@label@compactacknowledgements{致谢}
 \def\xmu@label@enacknowledgements{Acknowledgements}
@@ -54,7 +54,7 @@
 \def\xmu@value@templateversion{v2.0}
 
 %% 封面内容
-\def\xmu@value@title{}
+\def\xmu@value@title{资产重组：一个资不抵债国有企业的最佳选择}
 
 %% 设置封面内容的命令
 \renewcommand\title[2][\xmu@value@title]{
@@ -107,7 +107,7 @@
     \fi
 }
 
-%% 论文答辩委员会名单
+%% 学位论文答辩委员会名单
 \newcommand\makenamelist{
     \cleardoublepage
     \pdfbookmark[0]{学位论文答辩委员会名单}{name_list}
@@ -126,9 +126,9 @@
 \let\songti\relax
 \let\heiti\relax
 \let\kaishu\relax
-\newCJKfontfamily\songti{SimSun}[AutoFakeSlant,AutoFakeBold]
-\newCJKfontfamily\kaishu{KaiTi}[AutoFakeSlant,AutoFakeBold]
-\newCJKfontfamily\heiti{SimHei}[AutoFakeSlant,AutoFakeBold]
+\newCJKfontfamily\songti{SimSun.ttc}[AutoFakeSlant,AutoFakeBold]
+\newCJKfontfamily\kaishu{SimKai.ttf}[AutoFakeSlant,AutoFakeBold]
+\newCJKfontfamily\heiti{SimHei.ttf}[AutoFakeSlant,AutoFakeBold]
 
 %% 设置英文字体
 \RequirePackage{xltxtra} % \XeTeX Logo
@@ -160,19 +160,20 @@
 %%页眉距边界：2.2 厘米，页脚距边界：2.2 厘米。
 %% https://mirrors.aliyun.com/CTAN/macros/latex/contrib/geometry/geometry.pdf
 \RequirePackage[
-paper=a4paper,
-top=3.0cm,
-bottom=3.0cm,
-left=3.0cm,
-right=3.0cm,
-headsep=0.3cm,
-headheight=0.5cm,
-footskip=0.6cm,
-bindingoffset=0cm,
-includehead=false,
-includefoot=false,
+paper=a4paper,%
+top=3.0cm,%
+bottom=3.0cm,%
+left=3.0cm,%
+right=3.0cm,%
+headsep=0.3cm,%
+headheight=0.5cm,%
+footskip=0.6cm,%
+bindingoffset=0cm,%
+includehead=false,%
+includefoot=false,%
 ]{geometry}
 
+%% 设置段落间距
 %% 段前空 0 磅,段后空 0 磅。
 %% https://latexref.xyz/_005cparindent-_0026-_005cparskip.html
 %\parskip 0.5ex plus 0.25ex minus 0.25ex
@@ -200,6 +201,7 @@ includefoot=false,
 \setstretch{1.5}
 \linespread{1.5}
 
+%% 设置章节格式
 %% https://mirrors.sjtug.sjtu.edu.cn/ctan/language/chinese/ctex/ctex.pdf
 %% 各章标题,例如:“第1章 引言”。 章序号采用阿拉伯数字,章序号与标题名之间空一个汉字符。采用黑体小三号字加粗,居中书写,单倍行距,段前空 24 磅,段后空 18 磅。论文的摘要,目录,参考文献,附录,致谢,在学期间完成的相关学术成果等部分的标题与章标题属于同一等级,也使用上述格式;英文摘要部分的标题“Abstract”以及英文目录“Contents”,采用 Arial 体小三号字加粗。
 \ctexset{chapter = {
@@ -214,6 +216,7 @@ includefoot=false,
     }
 }
 
+%% 设置一级章节格式
 %% 一级节标题,例如:“2.1 实验装置与实验方法”。节标题序号与标题名之间空一个汉字符(下同)。采用黑体四号(14pt)字加粗居左书写,行距为1.5倍,段前空 24 磅,段后空 6 磅。
 \ctexset{section = {
         format={\raggedright \sffamily \bfseries \heiti \zihao{4}},
@@ -223,6 +226,7 @@ includefoot=false,
     }
 }
 
+%% 设置二级标题格式 
 %% 二级节(目)标题,例如:“2.1.1实验装置”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。
 \ctexset{subsection = {
         format = {\bfseries \sffamily \heiti \raggedright \zihao{-4}},
@@ -232,6 +236,7 @@ includefoot=false,
     }
 }
 
+%% 设置三节标题格式
 %% 三级节(子目)标题,例如:“2.1.2.1 归纳法”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。一般情况下不建议使用三级节标题。
 \ctexset{subsubsection = {
         format = {\heiti \raggedright \zihao{-4}},
@@ -272,12 +277,6 @@ includefoot=false,
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
 
-%% 定义几个常用的数学常量符号
-\newcommand{\me}{\mathrm{e}}
-\newcommand{\mi}{\mathrm{i}}
-\newcommand{\mj}{\mathrm{j}}
-\newcommand{\dif}{\,\mathrm{d}}
-
 %% 定理
 \theoremstyle{plain}
 \newtheorem{algo}{算法~}[chapter]
@@ -295,8 +294,6 @@ includefoot=false,
 
 %% graphics packages
 \RequirePackage{graphicx}
-\RequirePackage{epsfig}
-\RequirePackage{stackengine}
 
 %% 并列子图
 %\RequirePackage{subfigure}
@@ -473,12 +470,6 @@ includefoot=false,
 %% 英文关键词
 \newcommand\enkeywords[1]{\vspace{2ex}\noindent{\bfseries\zihao{-4}\xmu@label@enkeywords} #1}
 
-%% 中文目录
-\addtocontents{toc}{\protect\hypersetup{hidelinks}}
-\addtocontents{etoc}{\protect\hypersetup{hidelinks}}
-\addtocontents{lot}{\protect\hypersetup{hidelinks}}
-\addtocontents{lof}{\protect\hypersetup{hidelinks}}
-
 %% 设置目录各级标题样式
 \RequirePackage{titletoc}
 \titlecontents{chapter}[0pt]
@@ -496,6 +487,10 @@ includefoot=false,
 {\thecontentslabel\hspace{\ccwd}}
 {}
 {\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} \thecontentspage}
+
+%% 中英文目录
+\addtocontents{toc}{\protect\hypersetup{hidelinks}}
+\addtocontents{etoc}{\protect\hypersetup{hidelinks}}
 
 %% 中文目录
 \renewcommand\tableofcontents{
