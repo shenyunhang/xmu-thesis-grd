@@ -187,6 +187,13 @@ includefoot=false,%
 %% Allow text pages of differing height.
 \raggedbottom
 
+%% https://mirrors.hit.edu.cn/CTAN/macros/latex/contrib/titlesec/titlesec.pdf
+\RequirePackage[bottomtitles]{titlesec}
+%\renewcommand{\bottomtitlespace}{-400pt}
+
+\widowpenalty=10000
+\clubpenalty=10000
+
 %% 删掉偶数页
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
     \thispagestyle{empty}%
