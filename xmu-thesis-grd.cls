@@ -11,6 +11,7 @@
 \RequirePackage{upgreek} % 直立希腊字母字体
 \RequirePackage[final]{pdfpages}
 \RequirePackage{ragged2e}
+\usepackage{tabularx}
 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesClass{xmu-thesis-grd}[2021/05/30 v2.0 xmu-thesis-grd document class]
@@ -20,10 +21,12 @@
 \newif\ifxmu@doctor\xmu@doctorfalse
 \newif\ifxmu@istwoside\xmu@istwosidefalse
 \newif\ifxmu@pdf\xmu@pdffalse
+\newif\ifxmu@compact\xmu@compactfalse
 \DeclareOption{twoside}{\xmu@istwosidetrue}
 \DeclareOption{master}{\xmu@mastertrue}
 \DeclareOption{doctor}{\xmu@doctortrue}
 \DeclareOption{pdf}{\xmu@pdftrue}
+\DeclareOption{compact}{\xmu@compacttrue}
 
 \ProcessOptions\relax
 \ifxmu@istwoside
@@ -36,6 +39,8 @@
 \def\xmu@label@abstract{摘~~~~要}
 \def\xmu@label@compactabstract{摘要}
 \def\xmu@label@enabstract{Abstract}
+\def\xmu@label@abstractincontent{Abstract-Chinese}
+\def\xmu@label@enabstractincontent{Abstract-English}
 \def\xmu@label@keywords{关键词：}
 \def\xmu@label@enkeywords{Keywords:~}
 \def\xmu@label@appendix{附录}
@@ -211,7 +216,7 @@ includefoot=false,%
 %% 设置章节格式
 %% https://mirrors.sjtug.sjtu.edu.cn/ctan/language/chinese/ctex/ctex.pdf
 %% 各章标题,例如:“第1章 引言”。 章序号采用阿拉伯数字,章序号与标题名之间空一个汉字符。采用黑体小三号字加粗,居中书写,单倍行距,段前空 24 磅,段后空 18 磅。论文的摘要,目录,参考文献,附录,致谢,在学期间完成的相关学术成果等部分的标题与章标题属于同一等级,也使用上述格式;英文摘要部分的标题“Abstract”以及英文目录“Contents”,采用 Arial 体小三号字加粗。
-\ctexset{chapter = {
+\ctexset{chapter={
         name = {第,章},
         number = {\arabic{chapter}},
         format = {\bfseries \sffamily \heiti \centering \zihao{-3}},
@@ -225,7 +230,7 @@ includefoot=false,%
 
 %% 设置一级章节格式
 %% 一级节标题,例如:“2.1 实验装置与实验方法”。节标题序号与标题名之间空一个汉字符(下同)。采用黑体四号(14pt)字加粗居左书写,行距为1.5倍,段前空 24 磅,段后空 6 磅。
-\ctexset{section = {
+\ctexset{section={
         format={\raggedright \sffamily \bfseries \heiti \zihao{4}},
         beforeskip = 24bp + 7bp + 8pt,
         afterskip = 6bp + 14bp + 0pt,
@@ -235,7 +240,7 @@ includefoot=false,%
 
 %% 设置二级标题格式 
 %% 二级节(目)标题,例如:“2.1.1实验装置”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。
-\ctexset{subsection = {
+\ctexset{subsection={
         format = {\bfseries \sffamily \heiti \raggedright \zihao{-4}},
         beforeskip = 24bp + 14bp,
         afterskip = 6bp + 12bp,
@@ -245,7 +250,7 @@ includefoot=false,%
 
 %% 设置三节标题格式
 %% 三级节(子目)标题,例如:“2.1.2.1 归纳法”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。一般情况下不建议使用三级节标题。
-\ctexset{subsubsection = {
+\ctexset{subsubsection={
         format = {\heiti \raggedright \zihao{-4}},
         beforeskip = 24bp + 14bp,
         afterskip = 6bp + 12bp,
@@ -303,8 +308,7 @@ includefoot=false,%
 \RequirePackage{graphicx}
 
 %% 并列子图
-%\RequirePackage{subfigure}
-\RequirePackage{subcaption}% replace subfigure with subcaption
+\RequirePackage{subcaption}
 \RequirePackage{wrapfig}
 
 %% 设置图表标题选项
@@ -341,6 +345,12 @@ includefoot=false,%
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
+
+%% 去除空间不够换页造成的当前页眉的浮动体之间空隙过大的问题的命令。该命令需要放在浮动体之后。
+\newcommand\nofloatspacing{
+% 	\vfill
+	\rule[\baselineskip]{0pt}{\baselineskip}
+}
 
 %% 表与上下正文之间各空一行。
 \setlength{\floatsep}{12pt}
@@ -412,7 +422,6 @@ includefoot=false,%
 }
 
 %% enumerate 列表环境间距调节
-%\RequirePackage{enumitem}
 \RequirePackage[inline, shortlabels]{enumitem}
 
 %% 页眉页脚
@@ -425,7 +434,7 @@ includefoot=false,%
     \fancyhf{}
     \fancyfoot[C]{\songti\zihao{5} \thepage}
     
-    \fancyhead[CO]{\zihao{5} \songti \leftmark}
+    \fancyhead[CO]{\zihao{5} \songti \nouppercase\leftmark}
     \fancyhead[CE]{\zihao{5} \songti {\xmu@value@title}}
 }
 
@@ -444,20 +453,28 @@ includefoot=false,%
 \newcommand\beginatevenpage{
     \clearpage
     \if@twoside
-    \thispagestyle{empty}
+    \thispagestyle{xmu@empty}
     \cleardoublepage
     \fi
 }
 
 %% 中文摘要
 \newenvironment{abstract}{
+
     \cleardoublepage
     \chapter*{\xmu@label@abstract}
-    \markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
-    \addcontentsline{toc}{chapter}{\xmu@label@compactabstract}
-    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  Abstract-Chinese}{\sffamily \thepage}{chapter.\thechapter}}
+
+    \ifxmu@compact
+		\addcontentsline{toc}{chapter}{\xmu@label@compactabstract} % 将摘要加入到目录中
+		\markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
+	\else
+		\addcontentsline{toc}{chapter}{\xmu@label@abstract} % 将摘要加入到目录中
+		\markboth{\xmu@label@abstract}{\xmu@label@abstract} % 页眉
+	\fi
+	
+	\addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
     \songti\zihao{-4}
-    \setstretch{1.38889}
+    \setstretch{1.38889} % 设置行间距
 }
 
 %% 中文关键词
@@ -469,7 +486,7 @@ includefoot=false,%
     \CTEXsetup[format+={\bfseries \sffamily \centering \zihao{3}}]{chapter} %暂时修改标题样式
     \chapter{\xmu@label@enabstract}
     \CTEXsetup[format+={\bfseries \heiti \centering \zihao{-3}}]{chapter} %恢复回默认的格式
-    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  Abstract-English}{\sffamily \thepage}{chapter.\thechapter}}
+    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@enabstractincontent}{\sffamily \thepage}{chapter.\thechapter}}
     \zihao{-4}
     \setstretch{1.38889}
 }
@@ -501,6 +518,7 @@ includefoot=false,%
 
 %% 中文目录
 \renewcommand\tableofcontents{
+    \setstretch{1.58889} % 设置行间距
     \if@twocolumn
     \@restonecoltrue\onecolumn
     \else
@@ -508,11 +526,17 @@ includefoot=false,%
     \fi
     
     \chapter*{\contentsname}
-    \addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将英文摘要加入到英文目录中
-    \markboth{\xmu@label@compactcontents}{\xmu@label@compactcontents} % 页眉
+
+    \ifxmu@compact
+		\markboth{\xmu@label@compactcontents}{\xmu@label@compactcontents} % 页眉
+		\addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
+	\else
+		\markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
+		\addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
+	\fi
     
     \makeatletter
-    \renewcommand{\@pnumwidth}{0em}% 1.55em
+    \renewcommand{\@pnumwidth}{0em}
     \makeatother
     
     \@starttoc{toc}%
@@ -537,6 +561,7 @@ includefoot=false,%
 
 %% 英文目录
 \newcommand\entableofcontents{
+    \setstretch{1.58889} % 设置行间距
     \if@twocolumn
     \@restonecoltrue\onecolumn
     \else
@@ -546,8 +571,10 @@ includefoot=false,%
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily Contents}{\sffamily \thepage}{chapter.\thechapter}} %将Contents加入到英文目录中
     \chapter*{\sffamily\encontentsname}
     \pdfbookmark[0]{Contents}{english_contents}
-    \markboth{\MakeUppercase\encontentsname}{\MakeUppercase\encontentsname}%修改页眉文字
-    
+
+
+    \markboth{\encontentsname}{\encontentsname}%修改页眉文字
+
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}% 1.55em
     \makeatother
@@ -561,10 +588,12 @@ includefoot=false,%
 }
 
 %% 参考文献风格
-\bibliographystyle{reference/GBT7714-2005NLang}
+\RequirePackage{gbt7714}
+\bibliographystyle{gbt7714-numerical} 
+% \bibliographystyle{reference/GBT7714-2005NLang}
 
 %% 引用文献序号的排序与压缩
-\RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
+% \RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} % 上标引用
 
 %% 参考文献环境
@@ -573,7 +602,7 @@ includefoot=false,%
     \setlength{\baselineskip}{16pt}
     \chapter*{\bibname}
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enreference}{\sffamily \thepage}{chapter.\thechapter}}
-    \markboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+    \markboth{\bibname}{\bibname}%
     \addcontentsline{toc}{chapter}{\xmu@label@reference}
     \vspace{3pt}
     \list{\@biblabel{\@arabic\c@enumiv}}%
@@ -615,7 +644,7 @@ includefoot=false,%
         \setlength{\labelsep}{0.5em}
         \setlength{\itemsep}{3pt}
         \setlength{\listparindent}{0in}
-        \setlength{\itemindent}{-2mm}
+        \setlength{\itemindent}{0in}
         \setlength{\rightmargin}{0in}
         \@openbib@code
         \usecounter{enumiv}%
@@ -629,9 +658,9 @@ includefoot=false,%
 {\def\@noitemerr
     {\@latex@warning{Empty `publications' environment}}%
     \endlist}
-\newcommand\publicationpreamble[1]{
-    \item[]\vspace{0.75cm}\hspace{-\labelwidth}{\heiti  \bfseries #1}
-}
+    \newcommand\publicationpreamble[1]{
+        \item[]\vspace{0.75cm}\hspace{-\labelwidth}\hspace{-\labelsep}{\heiti  \bfseries #1}
+    }
 
 %% 致谢 
 \newenvironment{acknowledgements}{
