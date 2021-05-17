@@ -1,0 +1,93 @@
+\usepackage[export]{adjustbox}
+\usepackage{booktabs}
+\usepackage{stackengine}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+\usepackage{graphbox}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{bbm}
+\usepackage{epsfig}
+\usepackage{stackengine}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage{amssymb}
+\usepackage{dsfont,pifont}
+
+\usepackage{colortbl}
+\usepackage[inline, shortlabels]{enumitem}
+
+\usepackage{ifthen}
+
+%\makeatletter
+%\@namedef{ver@everyshi.sty}{}
+%\makeatother
+\usepackage{tikz}
+
+%\newcommand{\hfilll}{\hspace{0pt plus 1filll}}
+\newcommand{\hfilll}{}
+
+\usepackage{xspace}
+
+% Add a period to the end of an abbreviation unless there's one
+% already, then \xspace.
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{c.f}\onedot} \def\Cf{\emph{C.f}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{\emph{et al}\onedot}
+
+\def\vs{比}
+\def\etal{等人}
+
+%% 定义公式命令
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 彩色表格
+%\usepackage{colortbl}
+%\usepackage{tikz}
+%\definecolor{myblue}{rgb}{0.4,0.6,0.9}
+\definecolor{myblue}{rgb}{0.6,0.8,1.0}
+\definecolor{myblue2}{rgb}{0.80,0.90,1.0}
+
+\definecolor{myblue}{rgb}{1.0,1.0,1.0}
+\definecolor{myblue2}{rgb}{1.0,1.0,1.0}
+
+% This selects the amount of color to use
+\newcommand{\col}[3]{%
+    \newcommand*{\MinNumber}{#2}%
+    \newcommand*{\MaxNumber}{#3}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.2*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.2*(\MaxNumber-\MinNumber))}%
+    \pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.0*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.0*(\MaxNumber-\MinNumber))}%
+    %\pgfmathsetmacro{\PercentColor}{100*10.0*max((#1-\MaxNumber+0.1),0)}%
+    \xdef\PercentColor{\PercentColor}%
+    %\cellcolor{myblue!\PercentColor}{#1}
+    %\ifthenelse{\equal{\PercentColor}{100.0}}{\cellcolor{myblue!\PercentColor}{\textbf{#1}}}{\cellcolor{myblue!\PercentColor}{#1}}
+    \ifthenelse{\equal{\PercentColor}{100.0}}{{\textbf{#1}}}{{#1}}
+}
+
+\newcommand{\sota}[3]{%
+    \newcommand*{\MinNumber}{#2}%
+    \newcommand*{\MaxNumber}{#3}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.2*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.2*(\MaxNumber-\MinNumber))}%
+    %\pgfmathsetmacro{\PercentColor}{100.0*(#1-\MinNumber+0.0*(\MaxNumber-\MinNumber))/(\MaxNumber-\MinNumber+0.0*(\MaxNumber-\MinNumber))}%
+    \pgfmathsetmacro{\PercentColor}{100*100.0*max((#1-\MaxNumber+0.01),0)}%
+    \xdef\PercentColor{\PercentColor}%
+    %\ifthenelse{\equal{\PercentColor}{0.0}}{\cellcolor{myblue2!\PercentColor}{#1}}{\cellcolor{myblue2!\PercentColor}{\textbf{#1}}
+    \ifthenelse{\equal{\PercentColor}{0.0}}{{#1}}{{\textbf{#1}}}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{reference/xmuthesis2}

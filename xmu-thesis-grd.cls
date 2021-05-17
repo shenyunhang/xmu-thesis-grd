@@ -17,23 +17,14 @@
 \ProvidesClass{xmu-thesis-grd}[2021/05/30 v2.0 xmu-thesis-grd document class]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-\newif\ifxmu@master\xmu@masterfalse
-\newif\ifxmu@doctor\xmu@doctorfalse
-\newif\ifxmu@istwoside\xmu@istwosidefalse
 \newif\ifxmu@pdf\xmu@pdffalse
 \newif\ifxmu@compact\xmu@compactfalse
-\DeclareOption{twoside}{\xmu@istwosidetrue}
-\DeclareOption{master}{\xmu@mastertrue}
-\DeclareOption{doctor}{\xmu@doctortrue}
 \DeclareOption{pdf}{\xmu@pdftrue}
 \DeclareOption{compact}{\xmu@compacttrue}
 
 \ProcessOptions\relax
-\ifxmu@istwoside
 \LoadClass[zihao=-4,a4paper,twoside,openright,UTF8,space=auto]{ctexbook}
-\else
-\LoadClass[zihao=-4,a4paper,oneside,openany,UTF8,space=auto]{ctexbook}
-\fi
+
 
 %% 定义一些标签
 \def\xmu@label@abstract{摘~~~~要}
@@ -68,6 +59,7 @@
 
 %% 绘制封面
 \newcommand\makecover{
+    \setstretch{1.78889} % 设置行间距
     \newpage
     \cleardoublepage
     \thispagestyle{empty}
@@ -76,10 +68,8 @@
     \includepdf[pages=-]{pdf_files/cover.pdf}
     
     \clearpage
-    \if@twoside
     \thispagestyle{empty}
     \cleardoublepage
-    \fi
 }
 
 %% 绘制原创性声明
@@ -88,13 +78,12 @@
     \pdfbookmark[0]{原创性声明}{originality_statement}
     \thispagestyle{empty}
     
+    \setstretch{2.2}
     \includepdf[pages=-]{pdf_files/originality_statement.pdf}
     
     \clearpage
-    \if@twoside
     \thispagestyle{empty}
     \cleardoublepage
-    \fi
 }
 
 %% 论文著作权使用声明
@@ -103,13 +92,12 @@
     \pdfbookmark[0]{著作权使用声明}{copyright_statement}
     \thispagestyle{empty}
     
+    \setstretch{2.2}
     \includepdf[pages=-]{pdf_files/copyright_statement.pdf}
     
     \clearpage
-    \if@twoside
     \thispagestyle{empty}
     \cleardoublepage
-    \fi
 }
 
 %% 学位论文答辩委员会名单
@@ -121,10 +109,8 @@
     \includepdf[pages=-]{pdf_files/name_list.pdf}
     
     \clearpage
-    \if@twoside
     \thispagestyle{empty}
     \cleardoublepage
-    \fi
 }
 
 %% 设置中文字体
@@ -181,7 +167,7 @@ includefoot=false,%
 %% 设置段落间距
 %% 段前空 0 磅,段后空 0 磅。
 %% https://latexref.xyz/_005cparindent-_0026-_005cparskip.html
-%\parskip 0.5ex plus 0.25ex minus 0.25ex
+% \parskip 0.5ex plus 0.25ex minus 0.25ex
 \setlength{\parskip}{0pt}
 
 \RequirePackage{layout}
@@ -200,12 +186,24 @@ includefoot=false,%
 \clubpenalty=10000
 
 %% 删掉偶数页
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-    \thispagestyle{empty}%
-    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\def\cleardoublepage{
+    \clearpage
+    \ifodd
+        \c@page
+    \else
+        \thispagestyle{empty}%
+        \hbox{}
+        \newpage
+        \if@twocolumn
+            \hbox{}
+            \newpage
+        \fi
+    \fi
+    }
 \let\xmu@cleardoublepage\cleardoublepage
 \newcommand{\xmu@clearemptydoublepage}{ % 对于 openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。
-    \clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}}
+    \clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}
+    }
 \let\cleardoublepage\xmu@clearemptydoublepage
 
 %% 行距为1.5倍
@@ -213,7 +211,7 @@ includefoot=false,%
 \setstretch{1.5}
 \linespread{1.5}
 
-%% 设置章节格式
+%% 设置章节格式（一倍行距为字体大小 × 1.297(1.3) × 1.25）
 %% https://mirrors.sjtug.sjtu.edu.cn/ctan/language/chinese/ctex/ctex.pdf
 %% 各章标题,例如:“第1章 引言”。 章序号采用阿拉伯数字,章序号与标题名之间空一个汉字符。采用黑体小三号字加粗,居中书写,单倍行距,段前空 24 磅,段后空 18 磅。论文的摘要,目录,参考文献,附录,致谢,在学期间完成的相关学术成果等部分的标题与章标题属于同一等级,也使用上述格式;英文摘要部分的标题“Abstract”以及英文目录“Contents”,采用 Arial 体小三号字加粗。
 \ctexset{chapter={
@@ -226,6 +224,9 @@ includefoot=false,%
         fixskip = true,
         aftername = ~~~~,
     }
+}
+\newcommand\reducespacing{
+	\vspace{-10pt} %用于临时减少章标题的段后值。
 }
 
 %% 设置一级章节格式
@@ -280,6 +281,12 @@ includefoot=false,%
     \pagenumbering{arabic}
     \pagestyle{xmu@headings}
     \setstretch{1.5} %设置正文段落行距
+}
+
+%% 设置后置
+\renewcommand{\backmatter}{%
+	\@mainmatterfalse
+	
 }
 
 %% 复杂表格
@@ -345,12 +352,6 @@ includefoot=false,%
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.65}
 \renewcommand{\floatpagefraction}{0.60}
-
-%% 去除空间不够换页造成的当前页眉的浮动体之间空隙过大的问题的命令。该命令需要放在浮动体之后。
-\newcommand\nofloatspacing{
-% 	\vfill
-	\rule[\baselineskip]{0pt}{\baselineskip}
-}
 
 %% 表与上下正文之间各空一行。
 \setlength{\floatsep}{12pt}
@@ -452,15 +453,14 @@ includefoot=false,%
 %% 下一页从偶数页开始
 \newcommand\beginatevenpage{
     \clearpage
-    \if@twoside
     \thispagestyle{xmu@empty}
     \cleardoublepage
-    \fi
+
 }
 
 %% 中文摘要
 \newenvironment{abstract}{
-
+    \setstretch{1.38889} % 设置行间距
     \cleardoublepage
     \chapter*{\xmu@label@abstract}
 
@@ -474,7 +474,6 @@ includefoot=false,%
 	
 	\addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
     \songti\zihao{-4}
-    \setstretch{1.38889} % 设置行间距
 }
 
 %% 中文关键词
@@ -482,13 +481,23 @@ includefoot=false,%
 
 %% 英文摘要
 \newenvironment{enabstract}{
-    \cleardoublepage
-    \CTEXsetup[format+={\bfseries \sffamily \centering \zihao{3}}]{chapter} %暂时修改标题样式
-    \chapter{\xmu@label@enabstract}
-    \CTEXsetup[format+={\bfseries \heiti \centering \zihao{-3}}]{chapter} %恢复回默认的格式
-    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@enabstractincontent}{\sffamily \thepage}{chapter.\thechapter}}
-    \zihao{-4}
     \setstretch{1.38889}
+    \cleardoublepage
+    
+	\ctexset{chapter={ %暂时修改标题样式
+    format = {\bfseries \sffamily \centering \zihao{3}},
+}
+}
+
+\chapter{\xmu@label@enabstract}
+
+\ctexset{chapter={ %恢复回默认的格式
+    format = {\bfseries \heiti \centering \zihao{-3}}, 
+}
+}
+
+\addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@enabstractincontent}{\sffamily \thepage}{chapter.\thechapter}}
+    \zihao{-4}
 }
 
 %% 英文关键词
@@ -538,7 +547,7 @@ includefoot=false,%
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}
     \makeatother
-    
+    \reducespacing
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
 }
@@ -570,8 +579,8 @@ includefoot=false,%
     
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily Contents}{\sffamily \thepage}{chapter.\thechapter}} %将Contents加入到英文目录中
     \chapter*{\sffamily\encontentsname}
-    \pdfbookmark[0]{Contents}{english_contents}
 
+    \pdfbookmark[0]{Contents}{english_contents}
 
     \markboth{\encontentsname}{\encontentsname}%修改页眉文字
 
@@ -579,11 +588,12 @@ includefoot=false,%
     \renewcommand{\@pnumwidth}{0em}% 1.55em
     \makeatother
     
-    \setlength{\baselineskip}{25pt}
-    \begingroup
-    \raggedright
+    %\setlength{\baselineskip}{25pt}
+    \reducespacing
+    %\begingroup
+    %\raggedright
     \@starttoc{etoc}%
-    \endgroup
+    %\endgroup
     \if@restonecol\twocolumn\fi
 }
 
@@ -601,6 +611,7 @@ includefoot=false,%
     \zihao{5}
     \setlength{\baselineskip}{16pt}
     \chapter*{\bibname}
+	\reducespacing
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enreference}{\sffamily \thepage}{chapter.\thechapter}}
     \markboth{\bibname}{\bibname}%
     \addcontentsline{toc}{chapter}{\xmu@label@reference}
@@ -682,6 +693,8 @@ includefoot=false,%
     \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
     \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
     \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
+
+    \ctexset{chapter={afterskip = 30pt}}
 }
 
 \endinput

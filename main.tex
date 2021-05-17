@@ -1,0 +1,98 @@
+%%=============================================================================
+%% demo.tex for Xiamen University Graduate Thesis
+%% modified by Yunhang SHen
+%% Version: 1.0
+%% Last update: 2021/05/30
+%% Based on BIT-thesis at https://github.com/BIT-thesis/LaTeX-template
+%%==============================================================================
+
+%% 注释下一行以关闭布局调试
+%\PassOptionsToPackage{showframe}{geometry}
+
+\documentclass[]{xmu-thesis-grd}
+
+% 模板选项： 硕士论文 master； 博士论文 doctor; 直接使用学校doc文档转换的pdf页面 pdf
+
+% 导入其他的包
+%\include{head}
+
+\begin{document}
+
+%% 注释下一行以关闭布局调试
+%\layout
+
+%% 注释以下以关闭字体大小调试
+%\makeatletter
+%\newcommand\thefontsize[1]{{#1 The current font size is: \f@size pt\par}}
+%\makeatother
+%\thefontsize\tiny
+%\thefontsize\scriptsize
+%\thefontsize\footnotesize
+%\thefontsize\small
+%\thefontsize\normalsize
+%\thefontsize\large
+%\thefontsize\Large
+%\thefontsize\LARGE
+%\thefontsize\huge
+%\thefontsize\Huge
+%\thefontsize{\fontsize{11}{13.2}}
+
+% 中文标题，用于页眉
+\title{XXXXXXXXXX}
+
+% 封面
+\makecover
+
+% 学位论文原创性声明
+\makeoriginalitystatement
+
+% 学位论文著作权使用声明
+\makecopyrightstatement
+
+% 学位论文答辩委员会名单
+\makenamelist
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 前置部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+% 中英文摘要
+\input{chapters/chapter0/00_abstract}
+
+% 加入目录
+\tableofcontents
+\entableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 正主体部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mainmatter
+
+\input{chapters/chapter1/01_introduction}
+\input{chapters/chapter2/02_chapter}
+\input{chapters/chapter3/03_chapter}
+
+
+%% 参考文献，使用 BibTeX，包含参考文献文件.bib
+\bibliography{reference/library}
+
+%% 附录(章节编号重新计算，使用字母进行编号)
+%\appendix
+%\setappendixnumberformat
+
+%\include{chapters/appendix1}
+%\include{chapters/appendix2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 后置部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+
+% 致谢
+\input{chapters/chapter99/99_acknowledgements}
+
+% 发表文章目录
+\input{chapters/chapter99/99_publications}
+
+\end{document}

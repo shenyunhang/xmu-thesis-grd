@@ -1072,7 +1072,7 @@ FUNCTION {incollection}
   new.block
   format.address.publisher output
   format.date "year" output.check
-  format.pages punct.colon output.after
+  format.pages ":" output.after
   format.urldate "" output.after
   format.url output
   format.doi output
@@ -1111,7 +1111,7 @@ FUNCTION {article.in.journal}
   format.date "year" output.check
   volume output
   format.journal.number "" output.after
-  format.pages punct.colon output.after
+  format.pages ":" output.after
   format.editdate "" output.after
   format.urldate "" output.after
   format.url output
