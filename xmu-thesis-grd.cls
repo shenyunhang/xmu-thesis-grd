@@ -189,21 +189,21 @@ includefoot=false,%
 \def\cleardoublepage{
     \clearpage
     \ifodd
-        \c@page
+    \c@page
     \else
-        \thispagestyle{empty}%
-        \hbox{}
-        \newpage
-        \if@twocolumn
-            \hbox{}
-            \newpage
-        \fi
+    \thispagestyle{empty}%
+    \hbox{}
+    \newpage
+    \if@twocolumn
+    \hbox{}
+    \newpage
     \fi
-    }
+    \fi
+}
 \let\xmu@cleardoublepage\cleardoublepage
 \newcommand{\xmu@clearemptydoublepage}{ % 对于 openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。
     \clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}
-    }
+}
 \let\cleardoublepage\xmu@clearemptydoublepage
 
 %% 行距为1.5倍
@@ -226,7 +226,7 @@ includefoot=false,%
     }
 }
 \newcommand\reducespacing{
-	\vspace{-10pt} %用于临时减少章标题的段后值。
+    \vspace{-10pt} %用于临时减少章标题的段后值。
 }
 
 %% 设置一级章节格式
@@ -285,8 +285,8 @@ includefoot=false,%
 
 %% 设置后置
 \renewcommand{\backmatter}{%
-	\@mainmatterfalse
-	
+    \@mainmatterfalse
+    
 }
 
 %% 复杂表格
@@ -455,7 +455,7 @@ includefoot=false,%
     \clearpage
     \thispagestyle{xmu@empty}
     \cleardoublepage
-
+    
 }
 
 %% 中文摘要
@@ -463,16 +463,16 @@ includefoot=false,%
     \setstretch{1.38889} % 设置行间距
     \cleardoublepage
     \chapter*{\xmu@label@abstract}
-
+    
     \ifxmu@compact
-		\addcontentsline{toc}{chapter}{\xmu@label@compactabstract} % 将摘要加入到目录中
-		\markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
-	\else
-		\addcontentsline{toc}{chapter}{\xmu@label@abstract} % 将摘要加入到目录中
-		\markboth{\xmu@label@abstract}{\xmu@label@abstract} % 页眉
-	\fi
-	
-	\addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
+    \addcontentsline{toc}{chapter}{\xmu@label@compactabstract} % 将摘要加入到目录中
+    \markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
+    \else
+    \addcontentsline{toc}{chapter}{\xmu@label@abstract} % 将摘要加入到目录中
+    \markboth{\xmu@label@abstract}{\xmu@label@abstract} % 页眉
+    \fi
+    
+    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
     \songti\zihao{-4}
 }
 
@@ -484,19 +484,19 @@ includefoot=false,%
     \setstretch{1.38889}
     \cleardoublepage
     
-	\ctexset{chapter={ %暂时修改标题样式
-    format = {\bfseries \sffamily \centering \zihao{3}},
-}
-}
-
-\chapter{\xmu@label@enabstract}
-
-\ctexset{chapter={ %恢复回默认的格式
-    format = {\bfseries \heiti \centering \zihao{-3}}, 
-}
-}
-
-\addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@enabstractincontent}{\sffamily \thepage}{chapter.\thechapter}}
+    \ctexset{chapter={ %暂时修改标题样式
+            format = {\bfseries \sffamily \centering \zihao{3}},
+        }
+    }
+    
+    \chapter{\xmu@label@enabstract}
+    
+    \ctexset{chapter={ %恢复回默认的格式
+            format = {\bfseries \heiti \centering \zihao{-3}}, 
+        }
+    }
+    
+    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@enabstractincontent}{\sffamily \thepage}{chapter.\thechapter}}
     \zihao{-4}
 }
 
@@ -535,14 +535,14 @@ includefoot=false,%
     \fi
     
     \chapter*{\contentsname}
-
+    
     \ifxmu@compact
-		\markboth{\xmu@label@compactcontents}{\xmu@label@compactcontents} % 页眉
-		\addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
-	\else
-		\markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
-		\addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
-	\fi
+    \markboth{\xmu@label@compactcontents}{\xmu@label@compactcontents} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
+    \else
+    \markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
+    \fi
     
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}
@@ -579,11 +579,11 @@ includefoot=false,%
     
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily Contents}{\sffamily \thepage}{chapter.\thechapter}} %将Contents加入到英文目录中
     \chapter*{\sffamily\encontentsname}
-
+    
     \pdfbookmark[0]{Contents}{english_contents}
-
+    
     \markboth{\encontentsname}{\encontentsname}%修改页眉文字
-
+    
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}% 1.55em
     \makeatother
@@ -611,7 +611,7 @@ includefoot=false,%
     \zihao{5}
     \setlength{\baselineskip}{16pt}
     \chapter*{\bibname}
-	\reducespacing
+    \reducespacing
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enreference}{\sffamily \thepage}{chapter.\thechapter}}
     \markboth{\bibname}{\bibname}%
     \addcontentsline{toc}{chapter}{\xmu@label@reference}
@@ -669,9 +669,9 @@ includefoot=false,%
 {\def\@noitemerr
     {\@latex@warning{Empty `publications' environment}}%
     \endlist}
-    \newcommand\publicationpreamble[1]{
-        \item[]\vspace{0.75cm}\hspace{-\labelwidth}\hspace{-\labelsep}{\heiti  \bfseries #1}
-    }
+\newcommand\publicationpreamble[1]{
+    \item[]\vspace{0.75cm}\hspace{-\labelwidth}\hspace{-\labelsep}{\heiti  \bfseries #1}
+}
 
 %% 致谢 
 \newenvironment{acknowledgements}{
@@ -693,7 +693,7 @@ includefoot=false,%
     \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
     \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
     \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
-
+    
     \ctexset{chapter={afterskip = 30pt}}
 }
 
