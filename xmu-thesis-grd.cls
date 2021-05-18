@@ -499,13 +499,15 @@ includefoot=false,%
     
     \ctexset{chapter={ %暂时修改标题样式
             format = {\bfseries \sffamily \centering \zihao{3}},
+            afterskip = 35pt,
         }
     }
     
     \chapter{\xmu@label@enabstract}
     
     \ctexset{chapter={ %恢复回默认的格式
-            format = {\bfseries \sffamily \heiti \centering \zihao{-3}}, 
+            format = {\bfseries \sffamily \heiti \centering \zihao{-3}},
+            afterskip = 40pt,
         }
     }
     
