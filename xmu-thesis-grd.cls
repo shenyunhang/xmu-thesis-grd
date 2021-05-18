@@ -275,6 +275,7 @@ includefoot=false,%
     \pagenumbering{arabic}
     \pagestyle{xmu@headings}
     \setstretch{1.5} %设置正文段落行距
+    \songti
 }
 
 %% 设置后置
