@@ -17,10 +17,6 @@
 \ProvidesClass{xmu-thesis-grd}[2021/05/30 v2.0 xmu-thesis-grd document class]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexbook}}
-\newif\ifxmu@pdf\xmu@pdffalse
-\newif\ifxmu@compact\xmu@compactfalse
-\DeclareOption{pdf}{\xmu@pdftrue}
-\DeclareOption{compact}{\xmu@compacttrue}
 
 \ProcessOptions\relax
 \LoadClass[zihao=-4,a4paper,twoside,openright,UTF8,space=auto]{ctexbook}
@@ -477,15 +473,10 @@ includefoot=false,%
         }
     }
     
-    \ifxmu@compact
-    \addcontentsline{toc}{chapter}{\xmu@label@compactabstract} % 将摘要加入到目录中
-    \markboth{\xmu@label@compactabstract}{\xmu@label@compactabstract} % 页眉
-    \else
     \addcontentsline{toc}{chapter}{\xmu@label@abstract} % 将摘要加入到目录中
     \markboth{\xmu@label@abstract}{\xmu@label@abstract} % 页眉
-    \fi
     
-    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily  \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
+    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \xmu@label@abstractincontent}{\sffamily \thepage}{chapter.\thechapter}}	
     \songti\zihao{-4}
 }
 
@@ -551,13 +542,8 @@ includefoot=false,%
     
     \chapter*{\contentsname}
     
-    \ifxmu@compact
-    \markboth{\xmu@label@compactcontents}{\xmu@label@compactcontents} % 页眉
-    \addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
-    \else
     \markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
-    \addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
-    \fi
+    \addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
     
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}
