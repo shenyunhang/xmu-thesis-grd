@@ -219,8 +219,8 @@ includefoot=false,%
         number = {\arabic{chapter}},
         format = {\bfseries \sffamily \heiti \centering \zihao{-3}},
         pagestyle = {xmu@headings},
-        beforeskip = 24bp + 8bp,
-        afterskip = 18bp + 15bp + 10bp,
+        beforeskip = 34pt,
+        afterskip = 40pt,
         fixskip = true,
         aftername = ~~~~,
     }
@@ -462,7 +462,20 @@ includefoot=false,%
 \newenvironment{abstract}{
     \setstretch{1.38889} % 设置行间距
     \cleardoublepage
+
+    \ctexset{chapter={ %暂时修改标题样式
+            format = {\heiti \centering \zihao{-3}},
+            afterskip = 32pt,
+        }
+    }
+    
     \chapter*{\xmu@label@abstract}
+    
+    \ctexset{chapter={ %恢复回默认的格式
+            format = {\bfseries \sffamily \heiti \centering \zihao{-3}},
+            afterskip = 40pt,
+        }
+    }
     
     \ifxmu@compact
     \addcontentsline{toc}{chapter}{\xmu@label@compactabstract} % 将摘要加入到目录中
@@ -492,7 +505,7 @@ includefoot=false,%
     \chapter{\xmu@label@enabstract}
     
     \ctexset{chapter={ %恢复回默认的格式
-            format = {\bfseries \heiti \centering \zihao{-3}}, 
+            format = {\bfseries \sffamily \heiti \centering \zihao{-3}}, 
         }
     }
     
