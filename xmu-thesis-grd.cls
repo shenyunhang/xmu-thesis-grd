@@ -209,7 +209,6 @@ includefoot=false,%
 
 %% 设置章节格式（一倍行距为字体大小 × 1.297(1.3) × 1.25）
 %% https://mirrors.sjtug.sjtu.edu.cn/ctan/language/chinese/ctex/ctex.pdf
-%% 各章标题,例如:“第1章 引言”。 章序号采用阿拉伯数字,章序号与标题名之间空一个汉字符。采用黑体小三号字加粗,居中书写,单倍行距,段前空 24 磅,段后空 18 磅。论文的摘要,目录,参考文献,附录,致谢,在学期间完成的相关学术成果等部分的标题与章标题属于同一等级,也使用上述格式;英文摘要部分的标题“Abstract”以及英文目录“Contents”,采用 Arial 体小三号字加粗。
 \ctexset{chapter={
         name = {第,章},
         number = {\arabic{chapter}},
@@ -226,11 +225,10 @@ includefoot=false,%
 }
 
 %% 设置一级章节格式
-%% 一级节标题,例如:“2.1 实验装置与实验方法”。节标题序号与标题名之间空一个汉字符(下同)。采用黑体四号(14pt)字加粗居左书写,行距为1.5倍,段前空 24 磅,段后空 6 磅。
 \ctexset{section={
         format={\raggedright \sffamily \bfseries \heiti \zihao{4}},
-        beforeskip = 24bp + 7bp + 8pt,
-        afterskip = 6bp + 14bp + 0pt,
+        beforeskip = 40pt,
+        afterskip = 21pt,
         fixskip = true,
     }
 }
@@ -434,6 +432,7 @@ includefoot=false,%
     \fancyhead[CO]{\zihao{5} \songti \nouppercase\leftmark}
     \fancyhead[CE]{\zihao{5} \songti {\xmu@value@title}}
 }
+\renewcommand{\headrulewidth}{0.6pt}
 
 %% 脚注样式 
 % 设置圈型角标
