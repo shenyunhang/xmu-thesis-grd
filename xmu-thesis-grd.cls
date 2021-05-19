@@ -601,7 +601,6 @@ includefoot=false,%
 %% 参考文献风格
 \RequirePackage{gbt7714}
 \bibliographystyle{gbt7714-numerical} 
-% \bibliographystyle{reference/GBT7714-2005NLang}
 
 %% 引用文献序号的排序与压缩
 % \RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
