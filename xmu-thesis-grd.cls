@@ -356,7 +356,7 @@ includefoot=false,%
 \setlength\intextsep{0mm}
 
 %% 定公式、图、表编号格式
-\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}
+\renewcommand\theequation{\arabic{chapter}--\arabic{equation}}
 \renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 
