@@ -116,6 +116,7 @@
 \newCJKfontfamily\songti{SimSun.ttc}[AutoFakeSlant,AutoFakeBold]
 \newCJKfontfamily\kaishu{SimKai.ttf}[AutoFakeSlant,AutoFakeBold]
 \newCJKfontfamily\heiti{SimHei.ttf}[AutoFakeSlant,AutoFakeBold]
+\setCJKmainfont{SimSun.ttc}[AutoFakeSlant,AutoFakeBold]
 
 %% 设置英文字体
 \RequirePackage{xltxtra} % \XeTeX Logo
@@ -356,7 +357,7 @@ includefoot=false,%
 \setlength\intextsep{0mm}
 
 %% 定公式、图、表编号格式
-\renewcommand\theequation{\arabic{chapter}--\arabic{equation}}
+\renewcommand\theequation{\arabic{chapter}-\arabic{equation}}
 \renewcommand\thefigure{\arabic{chapter}.\arabic{figure}}
 \renewcommand\thetable{\arabic{chapter}.\arabic{table}}
 
@@ -433,6 +434,7 @@ includefoot=false,%
     \fancyhead[CO]{\zihao{5} \songti \nouppercase\leftmark}
     \fancyhead[CE]{\zihao{5} \songti {\xmu@value@title}}
 }
+%% 加粗页眉横线
 \renewcommand{\headrulewidth}{0.6pt}
 
 %% 脚注样式 
@@ -589,12 +591,12 @@ includefoot=false,%
     \renewcommand{\@pnumwidth}{0em}% 1.55em
     \makeatother
     
-    %\setlength{\baselineskip}{25pt}
+% 	\setlength{\baselineskip}{25pt}
     \reducespacing
-    %\begingroup
-    %\raggedright
+% 	\begingroup
+% 	\raggedright
     \@starttoc{etoc}%
-    %\endgroup
+% 	\endgroup
     \if@restonecol\twocolumn\fi
 }
 
