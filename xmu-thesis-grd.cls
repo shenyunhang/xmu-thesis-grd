@@ -458,7 +458,7 @@ includefoot=false,%
 \newcommand\beginatevenpage{
     \clearpage
     \thispagestyle{xmu@empty}
-    \cleardoublepage    
+    \cleardoublepage
 }
 
 %% 中文摘要
@@ -606,11 +606,11 @@ includefoot=false,%
 }
 
 %% 参考文献风格
-%\RequirePackage{gbt7714}
 \bibliographystyle{reference/gbt7714-numerical}
+\RequirePackage[]{gbt7714}
 
 %% 引用文献序号的排序与压缩
-\RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
+%\RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
 \newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}} % 上标引用
 
 %% 参考文献环境
