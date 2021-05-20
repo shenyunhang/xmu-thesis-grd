@@ -227,7 +227,7 @@ includefoot=false,%
 
 %% 设置一级章节格式
 \ctexset{section={
-        format={\raggedright \sffamily \bfseries \heiti \zihao{4}},
+        format = {\raggedright \sffamily \bfseries \heiti \zihao{4}},
         beforeskip = 40pt,
         afterskip = 21pt,
         fixskip = true,
@@ -247,7 +247,7 @@ includefoot=false,%
 %% 设置三节标题格式
 %% 三级节(子目)标题,例如:“2.1.2.1 归纳法”。采用黑体小四号(12pt)字加粗居左书写,行距为1.5倍,段前空 12磅,段后空 6 磅。一般情况下不建议使用三级节标题。
 \ctexset{subsubsection={
-        format = {\heiti \raggedright \zihao{-4}},
+        format = {\bfseries \sffamily \heiti \raggedright \zihao{-4}},
         beforeskip = 24bp + 14bp,
         afterskip = 6bp + 12bp,
         fixskip = true,
@@ -291,6 +291,12 @@ includefoot=false,%
 \RequirePackage{multirow}
 \RequirePackage{booktabs}
 \newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+
+%% 设置表格字号
+%% 表单元格中的文字一般应居中书写（上下居中，左右居中），不宜左右居中书写的，可采取两端对齐的方式书写。表单元格中的文字采用宋体11pt 字书写， 单倍行距，段前空 3 磅，段后空 3 磅。
+\RequirePackage{etoolbox}
+\AtBeginEnvironment{table}{\fontsize{11}{13.2}\selectfont}
+\AtBeginEnvironment{table*}{\fontsize{11}{13.2}\selectfont}
 
 %% 定理
 \theoremstyle{plain}
@@ -545,7 +551,7 @@ includefoot=false,%
     \chapter*{\contentsname}
     
     \markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
-    \addcontentsline{toc}{chapter}{\xmu@label@compactcontents} %将中文摘要加入到目录中
+    \addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
     
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}
@@ -601,8 +607,8 @@ includefoot=false,%
 }
 
 %% 参考文献风格
-\RequirePackage{gbt7714}
-\bibliographystyle{gbt7714-numerical} 
+%\RequirePackage{gbt7714}
+\bibliographystyle{reference/gbt7714-numerical}
 
 %% 引用文献序号的排序与压缩
 % \RequirePackage[numbers,square,comma,super,sort&compress]{natbib}
@@ -679,10 +685,10 @@ includefoot=false,%
 \newenvironment{acknowledgements}{
     \cleardoublepage
     \chapter*{\xmu@label@acknowledgements}
-    \markboth{\xmu@label@compactacknowledgements}{\xmu@label@compactacknowledgements} % 页眉
-    \addcontentsline{toc}{chapter}{\xmu@label@compactacknowledgements}
+    \markboth{\xmu@label@acknowledgements}{\xmu@label@acknowledgements} % 页眉
+    \addcontentsline{toc}{chapter}{\xmu@label@acknowledgements}
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enacknowledgements}{\sffamily \thepage}{chapter.\thechapter}}
-    % 	\addcontentsline{etoc}{chapter}{\sffamily\xmu@label@enacknowledgements}
+% 	\addcontentsline{etoc}{chapter}{\sffamily\xmu@label@enacknowledgements}
     \songti
 }
 
