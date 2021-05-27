@@ -42,7 +42,6 @@
 \def\xmu@label@contents{目~~~~录}
 \def\xmu@label@compactcontents{目录}
 \def\xmu@label@encontents{Contents}
-
 \def\xmu@value@templateversion{v2.0}
 
 %% 封面内容
@@ -64,8 +63,6 @@
     \includepdf[pages=-]{pdf_files/cover.pdf}
     
     \clearpage
-    \thispagestyle{empty}
-    \cleardoublepage
 }
 
 %% 绘制原创性声明
@@ -78,8 +75,6 @@
     \includepdf[pages=-]{pdf_files/originality_statement.pdf}
     
     \clearpage
-    \thispagestyle{empty}
-    \cleardoublepage
 }
 
 %% 论文著作权使用声明
@@ -92,8 +87,6 @@
     \includepdf[pages=-]{pdf_files/copyright_statement.pdf}
     
     \clearpage
-    \thispagestyle{empty}
-    \cleardoublepage
 }
 
 %% 学位论文答辩委员会名单
@@ -105,8 +98,6 @@
     \includepdf[pages=-]{pdf_files/name_list.pdf}
     
     \clearpage
-    \thispagestyle{empty}
-    \cleardoublepage
 }
 
 %% 设置中文字体
@@ -147,25 +138,24 @@
 %%页码范围：普通；
 %%页眉距边界：2.2 厘米，页脚距边界：2.2 厘米。
 %% https://mirrors.aliyun.com/CTAN/macros/latex/contrib/geometry/geometry.pdf
-\RequirePackage[
-paper=a4paper,%
-top=3.0cm,%
-bottom=3.0cm,%
-left=3.0cm,%
-right=3.0cm,%
-headsep=0.3cm,%
-headheight=0.5cm,%
-footskip=0.6cm,%
-bindingoffset=0cm,%
-includehead=false,%
-includefoot=false,%
+\RequirePackage[%
+    paper = a4paper,%
+    top = 3cm,%
+    bottom = 3cm,%
+    left = 3cm,%
+    right = 3cm,%
+    headsep = 0.3cm,%
+    headheight = 0.5cm,%
+    footskip = 0.6cm,%
+    bindingoffset = 0cm,%
+    includehead = false,%
+    includefoot = false,%
 ]{geometry}
 
 %% 设置段落间距
 %% 段前空 0 磅,段后空 0 磅。
 %% https://latexref.xyz/_005cparindent-_0026-_005cparskip.html
-% \parskip 0.5ex plus 0.25ex minus 0.25ex
-\setlength{\parskip}{0pt}
+\setlength{\parskip}{0em}
 
 \RequirePackage{layout}
 
@@ -182,26 +172,17 @@ includefoot=false,%
 \widowpenalty=10000
 \clubpenalty=10000
 
-%% 删掉偶数页
+%% 让空白页前后页码连续
+\newcounter{blankpage}
 \def\cleardoublepage{
     \clearpage
     \ifodd
     \c@page
     \else
-    \thispagestyle{empty}%
-    \hbox{}
-    \newpage
-    \if@twocolumn
-    \hbox{}
-    \newpage
-    \fi
+    \stepcounter{blankpage}%
+    \hbox {}\newpage
     \fi
 }
-\let\xmu@cleardoublepage\cleardoublepage
-\newcommand{\xmu@clearemptydoublepage}{ % 对于 openright 选项，必须保证章页右开，且如果前章末页内容须清空其页眉页脚。
-    \clearpage{\pagestyle{xmu@empty}\xmu@cleardoublepage}
-}
-\let\cleardoublepage\xmu@clearemptydoublepage
 
 %% 行距为1.5倍
 \RequirePackage{setspace}
@@ -223,6 +204,9 @@ includefoot=false,%
 }
 \newcommand\reducespacing{
     \vspace{-10pt} %用于临时减少章标题的段后值。
+}
+\newcommand\adjustafterskip{
+	\ctexset{chapter={afterskip = 30pt}}
 }
 
 %% 设置一级章节格式
@@ -264,7 +248,10 @@ includefoot=false,%
 \renewcommand{\frontmatter}{ % 修改 frontmatter 的页码为大写罗马格式，并调整页面风格
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmatterfalse
-    \pagenumbering{Roman}
+%    \pagenumbering{Roman}
+    \setcounter{blankpage}{0}
+	\global\c@page \@ne
+	\renewcommand\thepage{\@Roman{\the\numexpr\value{page}-\value{blankpage}\relax}}
     \pagestyle{xmu@headings}
 }
 
@@ -273,10 +260,14 @@ includefoot=false,%
 \renewcommand{\mainmatter}{ % 修改 mainmatter 的页码为阿拉伯格式，并调整页面风格
     \if@openright\cleardoublepage\else\clearpage\fi
     \@mainmattertrue
-    \pagenumbering{arabic}
+%    \pagenumbering{arabic}
     \pagestyle{xmu@headings}
     \setstretch{1.5} %设置正文段落行距
     \songti
+    \setcounter{blankpage}{0}
+	\global\c@page \@ne
+	\renewcommand\thepage{\@arabic{\the\numexpr\value{page}-\value{blankpage}\relax}}
+	
 }
 
 %% 设置后置
@@ -297,6 +288,13 @@ includefoot=false,%
 \RequirePackage{etoolbox}
 \AtBeginEnvironment{table}{\fontsize{11}{13.2}\selectfont}
 \AtBeginEnvironment{table*}{\fontsize{11}{13.2}\selectfont}
+
+%% 算法
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+\floatname{algorithm}{算法}  
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}  
+\renewcommand{\algorithmicensure}{\textbf{输出:}} 
 
 %% 定理
 \theoremstyle{plain}
@@ -379,49 +377,55 @@ includefoot=false,%
 %% 设置源代码显示格式
 \RequirePackage{listings}
 \lstset{tabsize=4, %
-    frame=shadowbox, %把代码用带有阴影的框圈起来
-    commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
-    rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
-    keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
-    showstringspaces=false,%不显示代码字符串中间的空格标记
-    stringstyle=\ttfamily, % 代码字符串的特殊格式
-    keepspaces=true, %
-    breakindent=22pt, %
-    numbers=left,%左侧显示行号
-    stepnumber=1,%
-    numberstyle=\tiny, %行号字体用小号
-    basicstyle=\footnotesize, %
-    showspaces=false, %
-    flexiblecolumns=true, %
-    breaklines=true, %对过长的代码自动换行
-    breakautoindent=true,%
-    breakindent=4em, %
-    aboveskip=1em, %代码块边框
-    %% added by http://bbs.ctex.org/viewthread.php?tid=53451
-    fontadjust,
-    captionpos=t,
-    framextopmargin=2pt,framexbottommargin=2pt,abovecaptionskip=-3pt,belowcaptionskip=3pt,
-    xleftmargin=4em,xrightmargin=4em, % 设定listing左右的空白
-    texcl=true,
-    % 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
-    extendedchars=false,columns=flexible,mathescape=true
-    numbersep=-1em
+	frame = shadowbox, %把代码用带有阴影的框圈起来
+	commentstyle = \color{red!50!green!50!blue!50},%浅灰色的注释
+	rulesepcolor = \color{red!20!green!20!blue!20},%代码块边框为淡青色
+	keywordstyle = \color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
+	showstringspaces = false,%不显示代码字符串中间的空格标记
+	stringstyle = \ttfamily, % 代码字符串的特殊格式
+	keepspaces = true, %
+	breakindent = 22pt, %
+	numbers = left,%左侧显示行号
+	stepnumber = 1,%
+	numberstyle = \tiny, %行号字体用小号
+	basicstyle = \footnotesize, %
+	showspaces = false, %
+	flexiblecolumns = true, %
+	breaklines = true, %对过长的代码自动换行
+	breakautoindent = true,%
+	breakindent = 4em, %
+	aboveskip = 1em, %代码块边框
+	%% added by http://bbs.ctex.org/viewthread.php?tid=53451
+	fontadjust, %
+	captionpos = t, %
+	framextopmargin = 2pt, %
+	framexbottommargin = 2pt, %
+	abovecaptionskip = -3pt, %
+	belowcaptionskip = 3pt, %
+	xleftmargin = 4em, %
+	xrightmargin = 4em, % 设定listing左右的空白
+	texcl=true, %
+	% 设定中文冲突，断行，列模式，数学环境输入，listing数字的样式
+	extendedchars=false, %
+	columns=flexible, %
+	mathescape=true %
+	numbersep=-1em %
 }
 \renewcommand{\lstlistingname}{代码} %% 重命名Listings标题头
 
 %% hyperref package
 \RequirePackage{hyperref}
 \hypersetup{
-    bookmarksnumbered,%
-    linktoc=all,
-    colorlinks=true,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    linkbordercolor=black,
-    urlcolor=black,
-    plainpages=false,%
-    pdfstartview=FitH
+	bookmarksnumbered,%
+	linktoc = all,
+	colorlinks = true,
+	citecolor = black,
+	filecolor = black,
+	linkcolor = black,
+	linkbordercolor = black,
+	urlcolor = black,
+	plainpages = false,%
+	pdfstartview = FitH
 }
 
 %% enumerate 列表环境间距调节
@@ -453,13 +457,6 @@ includefoot=false,%
 % 设置角标数字的字体和正文一致，并且1.5字符缩进
 \usepackage{scrextend}
 \deffootnote{1.6em}{0em}{\thefootnotemark \enskip}
-
-%% 下一页从偶数页开始
-\newcommand\beginatevenpage{
-    \clearpage
-    \thispagestyle{xmu@empty}
-    \cleardoublepage
-}
 
 %% 中文摘要
 \newenvironment{abstract}{
@@ -522,17 +519,17 @@ includefoot=false,%
 {\contentsmargin{0mm} \bfseries \heiti \zihao{4} \setlength{\baselineskip}{25pt}}
 {\thecontentslabel\hspace{\ccwd}}
 {\bfseries}
-{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} \thecontentspage}
+{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} {\normalfont \zihao{-4} \thecontentspage}}
 \titlecontents{section}[1\ccwd]
 {\contentsmargin{0mm} \bfseries \heiti \zihao{-4} \setlength{\baselineskip}{25pt}}
 {\thecontentslabel\hspace{\ccwd}}
 {\bfseries}
-{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} \thecontentspage}
+{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} {\normalfont \zihao{-4} \thecontentspage}}
 \titlecontents{subsection}[2\ccwd]
 {\contentsmargin{0mm} \songti \zihao{-4} \setlength{\baselineskip}{25pt}}
 {\thecontentslabel\hspace{\ccwd}}
 {}
-{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} \thecontentspage}
+{\hspace{.5em}\titlerule*{\zihao{-4} \normalfont.} {\normalfont \zihao{-4} \thecontentspage}}
 
 %% 中英文目录
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
@@ -540,24 +537,19 @@ includefoot=false,%
 
 %% 中文目录
 \renewcommand\tableofcontents{
-    \setstretch{1.58889} % 设置行间距
-    \if@twocolumn
-    \@restonecoltrue\onecolumn
-    \else
-    \@restonecolfalse
-    \fi
+    \setstretch{1} % 设置行间距
     
     \chapter*{\contentsname}
     
     \markboth{\xmu@label@contents}{\xmu@label@contents} % 页眉
     \addcontentsline{toc}{chapter}{\xmu@label@contents} %将中文摘要加入到目录中
-    
+    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily \encontentsname}{\sffamily \thepage}{chapter.\thechapter}} %将Contents加入到英文目录中
+
     \makeatletter
     \renewcommand{\@pnumwidth}{0em}
     \makeatother
     \reducespacing
     \@starttoc{toc}%
-    \if@restonecol\twocolumn\fi
 }
 \setcounter{secnumdepth}{4}  % 目录显示的章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
@@ -578,17 +570,11 @@ includefoot=false,%
 
 %% 英文目录
 \newcommand\entableofcontents{
-    \setstretch{1.58889} % 设置行间距
-    \if@twocolumn
-    \@restonecoltrue\onecolumn
-    \else
-    \@restonecolfalse
-    \fi
+    \setstretch{1} % 设置行间距
     
-    \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily Contents}{\sffamily \thepage}{chapter.\thechapter}} %将Contents加入到英文目录中
     \chapter*{\sffamily\encontentsname}
     
-    \pdfbookmark[0]{Contents}{english_contents}
+    \pdfbookmark[0]{\encontentsname}{english_contents}
     
     \markboth{\encontentsname}{\encontentsname}%修改页眉文字
     
@@ -596,13 +582,8 @@ includefoot=false,%
     \renewcommand{\@pnumwidth}{0em}% 1.55em
     \makeatother
     
-% 	\setlength{\baselineskip}{25pt}
     \reducespacing
-% 	\begingroup
-% 	\raggedright
     \@starttoc{etoc}%
-% 	\endgroup
-    \if@restonecol\twocolumn\fi
 }
 
 %% 参考文献风格
@@ -618,7 +599,6 @@ includefoot=false,%
     \zihao{5}
     \setlength{\baselineskip}{16pt}
     \chapter*{\bibname}
-    \reducespacing
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enreference}{\sffamily \thepage}{chapter.\thechapter}}
     \markboth{\bibname}{\bibname}%
     \addcontentsline{toc}{chapter}{\xmu@label@reference}
@@ -687,7 +667,6 @@ includefoot=false,%
     \markboth{\xmu@label@acknowledgements}{\xmu@label@acknowledgements} % 页眉
     \addcontentsline{toc}{chapter}{\xmu@label@acknowledgements}
     \addtocontents{etoc}{\protect\contentsline{chapter}{\sffamily\xmu@label@enacknowledgements}{\sffamily \thepage}{chapter.\thechapter}}
-% 	\addcontentsline{etoc}{chapter}{\sffamily\xmu@label@enacknowledgements}
     \songti
 }
 
@@ -697,11 +676,9 @@ includefoot=false,%
 
 %% 附录编号样式
 \newcommand\setappendixnumberformat{
-    \renewcommand\theequation{\Alph{chapter}--\arabic{equation}}  % 附录中编号形式是"A-1"的样子
-    \renewcommand\thefigure{\Alph{chapter}--\arabic{figure}}
-    \renewcommand\thetable{\Alph{chapter}--\arabic{table}}
-    
-    \ctexset{chapter={afterskip = 30pt}}
+	\renewcommand\theequation{\Alph{chapter}-\arabic{equation}}  % 附录中编号形式是"A-1"的样子
+	\renewcommand\thefigure{\Alph{chapter}-\arabic{figure}}
+	\renewcommand\thetable{\Alph{chapter}-\arabic{table}}
 }
 
 \endinput
