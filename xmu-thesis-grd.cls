@@ -273,7 +273,6 @@
 %% 设置后置
 \renewcommand{\backmatter}{%
     \@mainmatterfalse
-    
 }
 
 %% 复杂表格
@@ -288,6 +287,11 @@
 \RequirePackage{etoolbox}
 \AtBeginEnvironment{table}{\fontsize{11}{13.2}\selectfont}
 \AtBeginEnvironment{table*}{\fontsize{11}{13.2}\selectfont}
+
+%% 让\midrule、\cmidrule、\bottomrule 的交叉点连接在一起
+%\aboverulesep=0ex
+%\belowrulesep=0ex
+\renewcommand{\arraystretch}{1.3}
 
 %% 算法
 \RequirePackage{algorithm}
@@ -554,6 +558,8 @@
 \setcounter{secnumdepth}{4}  % 目录显示的章节编号深度 (part 对应 -1)
 \setcounter{tocdepth}{2}     % 目录深度 (part 对应 -1)
 
+%\RequirePackage{tocloft}
+
 %% 添加英文目录条目的命令
 \newcommand\enchapter[1]{\addtocontents{etoc}
     {\protect\contentsline{chapter}
@@ -583,7 +589,11 @@
     \makeatother
     
     \reducespacing
+    
+    %% https://ctan.math.washington.edu/tex-archive/macros/latex/contrib/ragged2e/ragged2e.pdf
+    \begin{FlushRight}
     \@starttoc{etoc}%
+    \end{FlushRight}
 }
 
 %% 参考文献风格
