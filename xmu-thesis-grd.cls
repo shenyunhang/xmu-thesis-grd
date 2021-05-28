@@ -289,9 +289,11 @@
 \AtBeginEnvironment{table*}{\fontsize{11}{13.2}\selectfont}
 
 %% 让\midrule、\cmidrule、\bottomrule 的交叉点连接在一起
-%\aboverulesep=0ex
-%\belowrulesep=0ex
-\renewcommand{\arraystretch}{1.3}
+%% http://tug.ctan.org/tex-archive/macros/latex/contrib/booktabs/booktabs.pdf
+\aboverulesep=0ex
+\belowrulesep=0ex
+% 表单元格单倍行距
+\renewcommand{\arraystretch}{1.38889}
 
 %% 算法
 \RequirePackage{algorithm}
